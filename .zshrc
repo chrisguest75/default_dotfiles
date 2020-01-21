@@ -106,6 +106,7 @@ source $ZSH/oh-my-zsh.sh
 #readonly PROFILE_SCRIPT_NAME=$(basename "$0")
 readonly PROFILE_SCRIPT_PATH=${0:A}
 readonly PROFILE_SCRIPT_DIR=$(dirname "$PROFILE_SCRIPT_PATH")
+env
 
 if [[ -f ${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh ]]; then 
     source ${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh
