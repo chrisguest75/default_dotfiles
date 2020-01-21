@@ -102,4 +102,8 @@ readonly PROFILE_SCRIPT_NAME=$(basename "$0")
 readonly PROFILE_SCRIPT_PATH=${0:A}
 readonly PROFILE_SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
 
-source ${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh
+if [[ -f ${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh ]]; then 
+    source ${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh
+else
+    echo "Machine specific profile configuration at '${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh' could not be found"
+fi
