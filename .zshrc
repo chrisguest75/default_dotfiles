@@ -98,9 +98,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-readonly PROFILE_SCRIPT_NAME=$(basename "$0")
+#readonly PROFILE_SCRIPT_NAME=$(basename "$0")
 readonly PROFILE_SCRIPT_PATH=${0:A}
-readonly PROFILE_SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
+readonly PROFILE_SCRIPT_DIR=$(dirname "$PROFILE_SCRIPT_PATH")
 
 if [[ -f ${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh ]]; then 
     source ${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh
