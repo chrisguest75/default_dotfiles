@@ -105,7 +105,8 @@ source $ZSH/oh-my-zsh.sh
 
 #readonly PROFILE_SCRIPT_NAME=$(basename "$0")
 
-readonly PROFILE_SCRIPT_DIR=$(readlink ~/.zshrc)
+readonly PROFILE_SYMLINK_ZSHRC=$(readlink ~/.zshrc)
+readonly PROFILE_SCRIPT_DIR=$(dirname "${PROFILE_SYMLINK_ZSHRC}")
 
 if [[ -f "${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh" ]]; then 
     source "${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh"
