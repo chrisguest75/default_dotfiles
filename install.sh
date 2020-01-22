@@ -8,16 +8,15 @@ if [[ ! -f ~/.zshrc_original ]]; then
         # Is zshrc already a symlink
         if ! readlink ~/.zshrc; then 
             mv ~/.zshrc ~/.zshrc_original
+
+            # shellcheck disable=SC2088
+            echo "~/.zshrc does not exist"
+            # Create symlink to profile
+            ln -s /home/vagrant/Code/default_dotfiles/.zshrc ~/.zshrc
         else
             # shellcheck disable=SC2088
             echo "~/.zshrc is already a symlink"
         fi
-    else
-        # shellcheck disable=SC2088
-        echo "~/.zshrc does not exist"
-        # Create symlink to profile
-        ln -s /home/vagrant/Code/default_dotfiles/.zshrc ~/.zshrc
-    fi
 else
     # shellcheck disable=SC2088
     echo "~/.zshrc_original backup file located.  Please rename and try again"
