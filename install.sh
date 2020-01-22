@@ -17,6 +17,7 @@ if [[ ! -f ~/.zshrc_original ]]; then
             # shellcheck disable=SC2088
             echo "~/.zshrc is already a symlink"
         fi
+    fi
 else
     # shellcheck disable=SC2088
     echo "~/.zshrc_original backup file located.  Please rename and try again"
