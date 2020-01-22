@@ -24,7 +24,7 @@ else
 fi
 
 # Copy over my theme
-cp chrisguest.zsh-theme "$ZSH/themes"
+cp chrisguest.zsh-theme "/home/${USER}/.oh-my-zsh/themes"
 
 
 
