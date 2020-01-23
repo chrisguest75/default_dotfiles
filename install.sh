@@ -7,6 +7,14 @@ readonly SCRIPT_DIR=$(dirname "${SCRIPT_PATH}")
 echo "SCRIPT_PATH=${SCRIPT_PATH}"
 echo "SCRIPT_DIR=${SCRIPT_DIR}"
 
+if [[ -d "/Users/$USER/.oh-my-zsh" ]]; then 
+    echo "Mac"
+    export ZSH="/Users/$USER/.oh-my-zsh"
+else
+    echo "Linux"
+    export ZSH="/home/$USER/.oh-my-zsh"
+fi
+
 # Is there a backup of config
 if [[ ! -f ~/.zshrc_original ]]; then 
     # Does zshrc exist?
@@ -30,7 +38,16 @@ else
 fi
 
 # Copy over my theme
-cp ${SCRIPT_DIR}/chrisguest.zsh-theme "/home/${USER}/.oh-my-zsh/themes"
+echo "Copying chrisguest.zsh-theme"
+cp ${SCRIPT_DIR}/chrisguest.zsh-theme "${ZSH}/custom/themes"
+
+echo "Installing powerlevel"
+if [ -d "${ZSH}/custom/themes/powerlevel9k" ]; then 
+    pushd ${ZSH}/custom/themes/powerlevel9k && git pull && popd 
+else
+    git clone https://github.com/bhilburn/powerlevel9k.git ${ZSH}/custom/themes/powerlevel9k
+fi
+
 
 
 

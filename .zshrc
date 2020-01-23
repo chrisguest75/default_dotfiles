@@ -13,7 +13,7 @@ fi
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-if [[ -f "$ZSH/themes/chrisguest.zsh-theme" ]]; then 
+if [[ -f "$ZSH/custom/themes/chrisguest.zsh-theme" ]]; then 
     ZSH_THEME="chrisguest"
 else
     ZSH_THEME="robbyrussell"
@@ -112,6 +112,8 @@ source $ZSH/oh-my-zsh.sh
 
 readonly PROFILE_SYMLINK_ZSHRC=$(readlink ~/.zshrc)
 readonly PROFILE_SCRIPT_DIR=$(dirname "${PROFILE_SYMLINK_ZSHRC}")
+
+source "${PROFILE_SCRIPT_DIR}/machines/default.sh"
 
 if [[ -f "${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh" ]]; then 
     source "${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh"
