@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+readonly PROFILE_SYMLINK_ZSHRC=$(readlink ~/.zshrc)
+readonly PROFILE_SCRIPT_DIR=$(dirname "${PROFILE_SYMLINK_ZSHRC}")
+
 # Path to your oh-my-zsh installation.
 if [[ -d "/Users/$USER/.oh-my-zsh" ]]; then 
     echo "Mac"
@@ -13,12 +16,7 @@ fi
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-if [[ -f "$ZSH/custom/themes/chrisguest.zsh-theme" ]]; then 
-    ZSH_THEME="chrisguest"
-else
-    ZSH_THEME="robbyrussell"
-fi
-
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -80,6 +78,12 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+if [[ -f "${PROFILE_SCRIPT_DIR}/machines/$(hostname).zsh_config.sh" ]]; then 
+    source "${PROFILE_SCRIPT_DIR}/machines/$(hostname).zsh_config.sh"
+else
+    echo "Machine specific zsh profile configuration at '${PROFILE_SCRIPT_DIR}/machines/$(hostname).zsh_config.sh' could not be found"
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -107,11 +111,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-#readonly PROFILE_SCRIPT_NAME=$(basename "$0")
-
-readonly PROFILE_SYMLINK_ZSHRC=$(readlink ~/.zshrc)
-readonly PROFILE_SCRIPT_DIR=$(dirname "${PROFILE_SYMLINK_ZSHRC}")
 
 source "${PROFILE_SCRIPT_DIR}/machines/default.sh"
 

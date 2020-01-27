@@ -48,6 +48,11 @@ else
     git clone https://github.com/bhilburn/powerlevel9k.git ${ZSH}/custom/themes/powerlevel9k
 fi
 
+# sudo apt install fontconfig
+# git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ../
 
+# mkdir ~/.fonts
+# cp ./build/* ~/.fonts
+# fc-cache -fv ~/.fonts
 
-
+# source ~/.fonts/*.sh
