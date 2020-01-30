@@ -6,10 +6,10 @@ readonly PROFILE_SCRIPT_DIR=$(dirname "${PROFILE_SYMLINK_ZSHRC}")
 
 # Path to your oh-my-zsh installation.
 if [[ -d "/Users/$USER/.oh-my-zsh" ]]; then 
-    echo "Mac"
+    #echo "Mac"
     export ZSH="/Users/$USER/.oh-my-zsh"
 else
-    echo "Linux"
+    #echo "Linux"
     export ZSH="/home/$USER/.oh-my-zsh"
 fi
 # Set name of the theme to load --- if set to "random", it will
