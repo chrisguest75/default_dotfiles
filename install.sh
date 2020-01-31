@@ -15,6 +15,7 @@ else
     export ZSH="/home/$USER/.oh-my-zsh"
 fi
 
+echo "Install ~/.zshrc"
 # Is there a backup of config
 if [[ ! -f ~/.zshrc_backup ]]; then 
     # Does zshrc exist?
@@ -59,7 +60,7 @@ fi
 
 # source ~/.fonts/*.sh
 
-
+echo "Install ~/.gitconfig"
 if [[ ! -f ~/.gitconfig_backup ]]; then 
     # Does zshrc exist?
     if [[ -f ~/.gitconfig ]]; then 
