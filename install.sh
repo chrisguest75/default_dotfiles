@@ -34,6 +34,13 @@ if [[ ! -f ~/.zshrc_backup ]]; then
             # shellcheck disable=SC2088
             echo "~/.zshrc is already a symlink"
         fi
+    else
+        echo "~/.zshrc does not exist"
+        # shellcheck disable=SC2088
+        echo "Linking ~/.zshrc"
+        # Create symlink to profile
+        ln -s ${SCRIPT_DIR}/.zshrc ~/.zshrc
+        echo " ~/.zshrc -> $(readlink  ~/.zshrc)"
     fi
 else
     # shellcheck disable=SC2088
@@ -78,6 +85,13 @@ if [[ ! -f ~/.gitconfig_backup ]]; then
             # shellcheck disable=SC2088
             echo "~/.gitconfig is already a symlink"
         fi
+    else
+        echo "~/.gitconfig does not exist"
+        # shellcheck disable=SC2088
+        echo "Linking ~/.gitconfig"
+        # Create symlink to profile
+        ln -s ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
+        echo "~/.gitconfig -> $(readlink ~/.gitconfig)"
     fi
 else
     # shellcheck disable=SC2088
