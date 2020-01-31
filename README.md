@@ -2,12 +2,9 @@
 These are my dotfiles that I can copy around to different machines.
 
 ## TODO
-1. Powerlevel9k installation?
 1. Offer a check script to verify prereq installations.
     - brew installations
     - fonts  
-1. tmux configs
-1. git config 
 1. Goto directories
 1. vim config?
 1. aws-okta aliases for admin and not

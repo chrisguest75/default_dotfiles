@@ -15,37 +15,52 @@ else
     export ZSH="/home/$USER/.oh-my-zsh"
 fi
 
-echo "Install ~/.zshrc"
-# Is there a backup of config
-if [[ ! -f ~/.zshrc_backup ]]; then 
-    # Does zshrc exist?
-    if [[ -f ~/.zshrc ]]; then 
-        # Is zshrc already a symlink
-        if ! readlink ~/.zshrc; then 
-            echo "~/.zshrc moved to ~/.zshrc_backup"
-            mv ~/.zshrc ~/.zshrc_backup
+#**************************************
+#*
+#**************************************
 
-            # shellcheck disable=SC2088
-            echo "Linking ~/.zshrc"
-            # Create symlink to profile
-            ln -s ${SCRIPT_DIR}/.zshrc ~/.zshrc
-            echo " ~/.zshrc -> $(readlink  ~/.zshrc)"
+backup_and_linkfile() {
+    local sourcefile=$1
+    local targetfile=$2
+    echo "Install ${targetfile}"
+    if [[ ! -f ${targetfile}_backup ]]; then 
+        # Does zshrc exist?
+        if [[ -f ${targetfile} ]]; then 
+            # Is zshrc already a symlink
+            if ! readlink ${targetfile}; then 
+                echo "${targetfile} moved to ${targetfile}_backup"
+                mv ${targetfile} ${targetfile}_backup
+
+                # shellcheck disable=SC2088
+                echo "Linking ${targetfile}"
+                # Create symlink to profile
+                ln -s ${sourcefile} ${targetfile}
+                echo "${targetfile} -> $(readlink ${targetfile})"
+            else
+                # shellcheck disable=SC2088
+                echo "${targetfile} is already a symlink"
+            fi
         else
+            echo "${targetfile} does not exist"
             # shellcheck disable=SC2088
-            echo "~/.zshrc is already a symlink"
+            echo "Linking ${targetfile}"
+            # Create symlink to profile
+            ln -s ${sourcefile} ${targetfile}
+            echo "${targetfile} -> $(readlink ${targetfile})"
         fi
     else
-        echo "~/.zshrc does not exist"
         # shellcheck disable=SC2088
-        echo "Linking ~/.zshrc"
-        # Create symlink to profile
-        ln -s ${SCRIPT_DIR}/.zshrc ~/.zshrc
-        echo " ~/.zshrc -> $(readlink  ~/.zshrc)"
+        echo "${targetfile}_backup backup file located.  Please rename and try again"
     fi
-else
-    # shellcheck disable=SC2088
-    echo "~/.zshrc_backup backup file located.  Please rename and try again"
-fi
+}
+
+#**************************************
+#* Start
+#**************************************
+
+backup_and_linkfile ${SCRIPT_DIR}/.zshrc ~/.zshrc
+backup_and_linkfile ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
+backup_and_linkfile ${SCRIPT_DIR}/tmux/.tmux_conf ~/.tmux_conf
 
 # Copy over my theme
 echo "Copying chrisguest.zsh-theme"
@@ -67,33 +82,3 @@ fi
 
 # source ~/.fonts/*.sh
 
-echo "Install ~/.gitconfig"
-if [[ ! -f ~/.gitconfig_backup ]]; then 
-    # Does zshrc exist?
-    if [[ -f ~/.gitconfig ]]; then 
-        # Is zshrc already a symlink
-        if ! readlink ~/.gitconfig; then 
-            echo "~/.gitconfig moved to ~/.gitconfig_backup"
-            mv ~/.gitconfig ~/.gitconfig_backup
-
-            # shellcheck disable=SC2088
-            echo "Linking ~/.gitconfig"
-            # Create symlink to profile
-            ln -s ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
-            echo "~/.gitconfig -> $(readlink ~/.gitconfig)"
-        else
-            # shellcheck disable=SC2088
-            echo "~/.gitconfig is already a symlink"
-        fi
-    else
-        echo "~/.gitconfig does not exist"
-        # shellcheck disable=SC2088
-        echo "Linking ~/.gitconfig"
-        # Create symlink to profile
-        ln -s ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
-        echo "~/.gitconfig -> $(readlink ~/.gitconfig)"
-    fi
-else
-    # shellcheck disable=SC2088
-    echo "~/.gitconfig_backup backup file located.  Please rename and try again"
-fi
