@@ -43,3 +43,7 @@ https://www.nerdfonts.com/
 https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
 ```
 
+## Tmuxinator
+```
+https://github.com/tmuxinator/tmuxinator
+```

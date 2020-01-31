@@ -16,17 +16,19 @@ else
 fi
 
 # Is there a backup of config
-if [[ ! -f ~/.zshrc_original ]]; then 
+if [[ ! -f ~/.zshrc_backup ]]; then 
     # Does zshrc exist?
     if [[ -f ~/.zshrc ]]; then 
         # Is zshrc already a symlink
         if ! readlink ~/.zshrc; then 
-            mv ~/.zshrc ~/.zshrc_original
+            echo "~/.zshrc moved to ~/.zshrc_backup"
+            mv ~/.zshrc ~/.zshrc_backup
 
             # shellcheck disable=SC2088
-            echo "~/.zshrc does not exist"
+            echo "Linking ~/.zshrc"
             # Create symlink to profile
             ln -s ${SCRIPT_DIR}/.zshrc ~/.zshrc
+            echo " ~/.zshrc -> $(readlink  ~/.zshrc)"
         else
             # shellcheck disable=SC2088
             echo "~/.zshrc is already a symlink"
@@ -34,7 +36,7 @@ if [[ ! -f ~/.zshrc_original ]]; then
     fi
 else
     # shellcheck disable=SC2088
-    echo "~/.zshrc_original backup file located.  Please rename and try again"
+    echo "~/.zshrc_backup backup file located.  Please rename and try again"
 fi
 
 # Copy over my theme
@@ -56,3 +58,27 @@ fi
 # fc-cache -fv ~/.fonts
 
 # source ~/.fonts/*.sh
+
+
+if [[ ! -f ~/.gitconfig_backup ]]; then 
+    # Does zshrc exist?
+    if [[ -f ~/.gitconfig ]]; then 
+        # Is zshrc already a symlink
+        if ! readlink ~/.gitconfig; then 
+            echo "~/.gitconfig moved to ~/.gitconfig_backup"
+            mv ~/.gitconfig ~/.gitconfig_backup
+
+            # shellcheck disable=SC2088
+            echo "Linking ~/.gitconfig"
+            # Create symlink to profile
+            ln -s ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
+            echo "~/.gitconfig -> $(readlink ~/.gitconfig)"
+        else
+            # shellcheck disable=SC2088
+            echo "~/.gitconfig is already a symlink"
+        fi
+    fi
+else
+    # shellcheck disable=SC2088
+    echo "~/.gitconfig_backup backup file located.  Please rename and try again"
+fi
