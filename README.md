@@ -21,6 +21,13 @@ git clone
 ./install.sh
 ```
 
+## Homebrew Apps
+
+```
+cd ./brew
+brew bundle install
+```
+
 ## How it works
 It uses the hostname to determine the name of scripts to run to configure with custom settings. 
 

@@ -19,7 +19,7 @@ fi
 #*
 #**************************************
 
-backup_and_linkfile() {
+function backup_and_linkfile() {
     local sourcefile=$1
     local targetfile=$2
     echo "Install ${targetfile}"
