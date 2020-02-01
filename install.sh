@@ -15,7 +15,15 @@ else
     export ZSH="/home/$USER/.oh-my-zsh"
     readonly INSTALL_OS="Linux"    
 fi
+
+INSTALL_FONT=true
+
 echo "${INSTALL_OS}"
+if [[ -f "${SCRIPT_DIR}/machines/$(hostname).env" ]]; then 
+    source "${SCRIPT_DIR}/machines/$(hostname).env"
+else
+    echo "Machine specific env profile configuration at '${SCRIPT_DIR}/machines/$(hostname).env' could not be found"
+fi
 
 #**************************************
 #*
@@ -75,14 +83,17 @@ else
     git clone https://github.com/bhilburn/powerlevel9k.git ${ZSH}/custom/themes/powerlevel9k
 fi
 
-if [[ ${INSTALL_OS} == "Linux" ]]; then 
-    echo "Installing NerdFonts"
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip -O ./downloads/Hack.zip
-    unzip ./downloads/Hack.zip -d ./downloads/hack 
-    mkdir -p ~/.fonts
-    cp ./downloads/hack/* ~/.fonts
-    fc-cache -fv ~/.fonts   
+if [[ ${INSTALL_FONT} == true ]]; then 
+    if [[ ${INSTALL_OS} == "Linux" ]]; then 
+        echo "Installing NerdFonts"
+        wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip -O ./downloads/Hack.zip
+        unzip ./downloads/Hack.zip -d ./downloads/hack 
+        mkdir -p ~/.fonts
+        cp ./downloads/hack/* ~/.fonts
+        fc-cache -fv ~/.fonts   
+    fi
+else
+    echo "Skipping installing fonts"
 fi
-
 echo "run > 'la ~/'"
 
