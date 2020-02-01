@@ -40,11 +40,14 @@ Load order:
 1. machines/$(hostname).sh
 
 
-## Installing powerline fonts
+## Installing powerline fonts on mac
 
-```
 https://www.nerdfonts.com/
 https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
+
+```
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
 ```
 
 ## Tmuxinator

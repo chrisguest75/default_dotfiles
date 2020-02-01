@@ -1,0 +1,38 @@
+#!/usr/bin/env bash 
+#set -euo pipefail
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     readonly MACHINE=Linux;;
+    Darwin*)    readonly MACHINE=Mac;;
+    CYGWIN*)    readonly MACHINE=Cygwin;;
+    MINGW*)     readonly MACHINE=MinGw;;
+    *)          readonly MACHINE="UNKNOWN:${unameOut}"
+esac
+
+readonly SCRIPT_NAME=$(basename "$0")
+readonly SCRIPT_PATH=${0:A}
+readonly SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
+readonly HOME_DIR=~
+if [[ ${MACHINE} == "Mac" ]]; then
+    readonly SYMLINKED_PATH="$(dirname "$(greadlink -f "$0")")"
+else
+    readonly SYMLINKED_PATH="$(dirname "$(readlink -f "$0")")"
+fi
+
+#echo ${SCRIPT_DIR}
+#echo ${SCRIPT_PATH}
+#echo ${SYMLINKED_PATH}
+#echo ${MACHINE}
+
+if cd "${SYMLINKED_PATH}"; then 
+    pipenv run python "./helmvalues.py" $@
+    if [[ $1 -gt 0 ]];then   
+        exit 1
+    fi 
+else 
+    echo "Failed to find '${SYMLINKED_PATH}'"; 
+    exit 1
+fi
+
+exit 0

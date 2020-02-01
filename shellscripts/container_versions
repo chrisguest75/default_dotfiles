@@ -1,0 +1,159 @@
+#!/usr/bin/env bash 
+#Use !/bin/bash -x  for debugging 
+
+readonly SCRIPT_NAME=$(basename "$0")
+readonly SCRIPT_PATH=${0:A}
+readonly SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
+
+#****************************************************************************
+#** Print out usage
+#****************************************************************************
+
+function help() {
+    local EXITCODE=0
+
+    cat <<- EOF
+usage: $SCRIPT_NAME options
+
+Show container versions in GCR using gcloud.
+
+OPTIONS:
+    -a --action              [latest] latest is default
+    -c --configuration       If not set will revert to gcloud default
+    -p --project             If not set will revert to gcloud default    
+    -h --help                show this help
+
+Examples:
+    Simple usage:
+    $SCRIPT_NAME eu.gcr.io/project/path 
+
+    Show containers for a specific project and configuration:
+    $SCRIPT_NAME --action=latest eu.gcr.io/project/path --project=gcloudproject --configuration=gcloudconfiguration
+ 
+EOF
+
+    return ${EXITCODE}
+}
+
+#****************************************************************************
+#** Check gcloud is available and configured
+#****************************************************************************
+
+function check_gcloud() (
+    local GCLOUDCONFIGURATION=$1
+    local GCPPROJECT=$2
+    local EXITCODE=0
+
+    if ! which gcloud> /dev/null; then 
+        echo "[Error] Could not find Google Cloud SDK tool 'gcloud'";
+        EXITCODE=1
+    else
+        if [[ -z ${GCLOUDCONFIGURATION} ]];then
+            GCLOUDCONFIGURATION=
+        fi
+        if [[ ! -z ${GCPPROJECT} ]];then
+            if ! gcloud ${GCLOUDCONFIGURATION} --format=json projects list | jq ".[].projectId == \"${GCPPROJECT}\"" | grep "true"; then
+                echo "[Error] Could not find project '${GCPPROJECT}' in '${GCLOUDCONFIGURATION}'";
+                EXITCODE=1
+            fi
+        fi
+    fi
+
+    return ${EXITCODE}
+)
+
+#****************************************************************************
+#** Main script 
+#****************************************************************************
+
+function main() {
+    local EXITCODE=0
+    local ACTION="latest"
+    #local GCP_CONFIGURATION=
+    #local GCP_PROJECT=
+
+    for i in "$@"
+    do
+    case $i in
+        -a=*|--action=*)
+            ACTION="${i#*=}"
+            shift 
+        ;;    
+        --configuration=*)
+            GCP_CONFIGURATION="${i#*=}"
+            shift 
+        ;;     
+        --project=*)
+            GCP_PROJECT="${i#*=}"
+            shift 
+        ;;         
+        --debug)
+            set -x
+            shift 
+        ;;
+        -h|--help)
+            local -r HELP=true            
+            shift 
+        ;;
+        *)
+            IMAGEPATH=${i}
+            #echo "Unrecognised ${i}"
+            shift
+        ;;
+    esac
+    done    
+
+    if [ "${HELP}" = true ] ; then
+        EXITCODE=1
+        help
+    else
+        if [ "${ACTION}" ]; then
+            case "${ACTION}" in
+                help)
+                    help
+                ;;
+                latest)
+                    CONFIGURATION=""
+                    if [ ! -z "${GCP_CONFIGURATION}" ]; then
+                        CONFIGURATION="--configuration ${GCP_CONFIGURATION}"
+                    fi   
+                    PROJECT=""
+                    if [ ! -z "${GCP_PROJECT}" ]; then
+                        PROJECT="--project ${GCP_PROJECT}"
+                    fi   
+                    if check_gcloud "${CONFIGURATION}" "${GCP_PROJECT}"; then
+                        PROJECTCONFIGURATION="${PROJECT} ${CONFIGURATION}"
+                        gcloud ${PROJECTCONFIGURATION} container images list --repository "${IMAGEPATH}" --format="table[no-heading](name)" | while read line; do 
+                            tag=$(gcloud ${PROJECTCONFIGURATION} container images list-tags ${line} --format="table[no-heading](tags)" | head -n 1)
+                            echo "${line}:${tag}" 
+                        done
+                    fi
+                ;;
+                all)
+                    CONFIGURATION=""
+                    if [ ! -z "${GCP_CONFIGURATION}" ]; then
+                        CONFIGURATION="--configuration ${GCP_CONFIGURATION}"
+                    fi   
+                    PROJECT=""
+                    if [ ! -z "${GCP_PROJECT}" ]; then
+                        PROJECT="--project ${GCP_PROJECT}"
+                    fi   
+                    if check_gcloud "${CONFIGURATION}" "${GCP_PROJECT}"; then
+                        PROJECTCONFIGURATION="${PROJECT} ${CONFIGURATION}"
+
+                        gcloud ${PROJECTCONFIGURATION} container images list-tags "${IMAGEPATH}" 
+                    fi
+                ;;
+                *)
+                    echo "Unrecognised ${ACTION}"; 
+                ;;
+            esac
+        else
+            EXITCODE=1
+            echo "No action specified use --action=<action>"
+        fi
+    fi
+    return ${EXITCODE}
+}
+
+main "$@"

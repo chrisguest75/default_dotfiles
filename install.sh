@@ -84,4 +84,5 @@ if [[ ${INSTALL_OS} == "Linux" ]]; then
     fc-cache -fv ~/.fonts   
 fi
 
+echo "run > 'la ~/'"
 

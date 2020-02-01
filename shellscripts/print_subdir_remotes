@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+function showremote() {
+	repopath="$(dirname "$1")"
+	pushd ${repopath} > /dev/null
+	url=$(git ls-remote --get-url 2>/dev/null) 
+	result=$?
+	if [ $result -ne 0 ]; then
+  		url="No remote configured"
+	fi
+	
+	echo "${repopath}, ${url}"
+	popd  > /dev/null
+}
+
+function print_subdir_remotes_columns() {
+	output=$(find ./* -name ".git" -print | while read file; do showremote "$file"; done)
+	#export -f showremote
+	#output=$(find ./* -name ".git" -exec '/usr/bin/bash -c showremote "{}"' \;)
+
+	echo "$output" | column -t -s,
+}
+
+print_subdir_remotes_columns
