@@ -8,12 +8,14 @@ echo "SCRIPT_PATH=${SCRIPT_PATH}"
 echo "SCRIPT_DIR=${SCRIPT_DIR}"
 
 if [[ -d "/Users/$USER/.oh-my-zsh" ]]; then 
-    echo "Mac"
     export ZSH="/Users/$USER/.oh-my-zsh"
+    readonly INSTALL_OS="Mac"
 else
-    echo "Linux"
+
     export ZSH="/home/$USER/.oh-my-zsh"
+    readonly INSTALL_OS="Linux"    
 fi
+echo "${INSTALL_OS}"
 
 #**************************************
 #*
@@ -60,7 +62,7 @@ function backup_and_linkfile() {
 
 backup_and_linkfile ${SCRIPT_DIR}/.zshrc ~/.zshrc
 backup_and_linkfile ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
-backup_and_linkfile ${SCRIPT_DIR}/tmux/.tmux_conf ~/.tmux_conf
+backup_and_linkfile ${SCRIPT_DIR}/tmux/.tmux.conf ~/.tmux.conf
 
 # Copy over my theme
 echo "Copying chrisguest.zsh-theme"
@@ -73,12 +75,13 @@ else
     git clone https://github.com/bhilburn/powerlevel9k.git ${ZSH}/custom/themes/powerlevel9k
 fi
 
-# sudo apt install fontconfig
-# git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ../
+if [[ ${INSTALL_OS} == "Linux" ]]; then 
+    echo "Installing NerdFonts"
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip -O ./downloads/Hack.zip
+    unzip ./downloads/Hack.zip -d ./downloads/hack 
+    mkdir -p ~/.fonts
+    cp ./downloads/hack/* ~/.fonts
+    fc-cache -fv ~/.fonts   
+fi
 
-# mkdir ~/.fonts
-# cp ./build/* ~/.fonts
-# fc-cache -fv ~/.fonts
-
-# source ~/.fonts/*.sh
 
