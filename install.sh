@@ -97,3 +97,6 @@ else
 fi
 echo "run > 'la ~/'"
 
+
+#https://code.visualstudio.com/docs/getstarted/settings
+#cat "$HOME/Library/Application Support/Code/User/settings.json"

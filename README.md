@@ -2,6 +2,7 @@
 These are my dotfiles that I can copy around to different machines.
 
 ## TODO
+1. Install the vscode default configuration
 1. Offer a check script to verify prereq installations.
     - brew installations
     - fonts  
