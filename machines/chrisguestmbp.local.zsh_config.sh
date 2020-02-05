@@ -49,11 +49,15 @@ fi
 #echo ZSH_THEME=$ZSH_THEME
 plugins=(git 
     iterm2   
+    gitfast 
+    docker 
+    docker-compose 
+    emoji 
+    emoji-clock
     #zsh-syntax-highlighting
     #zsh-autosuggestions
     )
 
-plugins=(iterm2 git brew gitfast docker docker-compose emoji emoji-clock)    
 
 
 

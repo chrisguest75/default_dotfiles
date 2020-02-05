@@ -11,9 +11,10 @@ if [ -f "/Users/${USER}/google-cloud-sdk/path.zsh.inc" ]; then . "/Users/${USER}
 # The next line enables shell command completion for gcloud.
 if [ -f "/Users/${USER}/google-cloud-sdk/completion.zsh.inc" ]; then . "/Users/${USER}/google-cloud-sdk/completion.zsh.inc"; fi
 export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="$PATH:$HOME/Code/my_global_scripts"
+#export PATH="$PATH:$HOME/Code/my_global_scripts"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
+export PATH=$PATH:${PROFILE_SCRIPT_DIR}/shellscripts
 
 export GOPATH=/Users/cguest/Code/conde/gopath
 

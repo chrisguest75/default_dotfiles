@@ -49,6 +49,7 @@ fi
 #echo ZSH_THEME=$ZSH_THEME
 plugins=(git 
     iterm2   
+    docker
     #zsh-syntax-highlighting
     #zsh-autosuggestions
     )
