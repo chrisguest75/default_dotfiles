@@ -2,8 +2,7 @@
 These are my dotfiles that I can copy around to different machines.
 
 ## TODO
-1. TODO: hostname changes on vpn - scutil --help
-    1. https://apple.stackexchange.com/questions/74676/vpn-changes-hostname
+1. Might have to fix the hostname resolution
 1. Install the vscode default configuration
 1. Offer a check script to verify prereq installations.
     - brew installations

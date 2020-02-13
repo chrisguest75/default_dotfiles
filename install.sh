@@ -10,11 +10,15 @@ echo "SCRIPT_DIR=${SCRIPT_DIR}"
 if [[ -d "/Users/$USER/.oh-my-zsh" ]]; then 
     export ZSH="/Users/$USER/.oh-my-zsh"
     readonly INSTALL_OS="Mac"
+
+    echo "Hostname (VPN): $(scutil --get HostName)"
+    echo "LocalHostName: $(scutil --get LocalHostName)"
 else
 
     export ZSH="/home/$USER/.oh-my-zsh"
     readonly INSTALL_OS="Linux"    
 fi
+echo "Hostname: $(hostname)"
 
 INSTALL_FONT=true
 
@@ -22,7 +26,11 @@ echo "${INSTALL_OS}"
 if [[ -f "${SCRIPT_DIR}/machines/$(hostname).env" ]]; then 
     source "${SCRIPT_DIR}/machines/$(hostname).env"
 else
-    echo "Machine specific env profile configuration at '${SCRIPT_DIR}/machines/$(hostname).env' could not be found"
+    if [[ -f "${SCRIPT_DIR}/machines/$(hostname).local.env" ]]; then 
+        source "${SCRIPT_DIR}/machines/$(hostname).local.env"
+    else    
+        echo "Machine specific env profile configuration at '${SCRIPT_DIR}/machines/$(hostname).env' or '${SCRIPT_DIR}/machines/$(hostname).local.env' could not be found"
+    fi
 fi
 
 #**************************************
@@ -32,7 +40,7 @@ fi
 function backup_and_linkfile() {
     local sourcefile=$1
     local targetfile=$2
-    echo "Install ${targetfile}"
+    echo "Installing ${targetfile}"
     if [[ ! -f ${targetfile}_backup ]]; then 
         # Does zshrc exist?
         if [[ -f ${targetfile} ]]; then 
