@@ -65,3 +65,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 ```
 https://github.com/tmuxinator/tmuxinator
 ```
+
+
+## Installing using Ansible.
+[./ansible/README.md](./ansible/README.md)

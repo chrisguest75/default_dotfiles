@@ -1,0 +1,11 @@
+
+[all:vars]
+docker_install="True"
+dotfiles_install="True"
+
+[chrisguest-W520]
+"192.168.1.144"
+[chrisguest-W520:vars]
+install_user="chrisguest"
+
+

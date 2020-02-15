@@ -1,0 +1,9 @@
+- name: Clone dotfiles
+  git:
+    repo: 'https://github.com/chrisguest75/default_dotfiles.git'
+    dest: /home/{{ install_user }}/Code/default_dotfiles
+  become_user: "{{ install_user }}"
+
+- name: Install dotfiles
+  shell: "/home/{{ install_user }}/Code/default_dotfiles/install.sh"
+  become_user: "{{ install_user }}"
