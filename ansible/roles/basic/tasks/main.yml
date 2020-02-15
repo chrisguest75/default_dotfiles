@@ -12,6 +12,15 @@
       - zsh
       - nano
       - bash-completion
+      - nmap
+      - shellcheck
+      - curl
+      - tmuxinator
+      - jq
+      - hub
+      - keepassx
+      - vim 
+
   become: True
   #become_user: "{{ install_user }}"
 

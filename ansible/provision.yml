@@ -27,3 +27,6 @@
 
     - role: "dotfiles"
       when: dotfiles_install == "True"  
+
+    # - role: "snaps"
+    #   when: snaps_install == "True"  

@@ -1,0 +1,8 @@
+
+- name: Install snaps
+  snap:
+    name:
+      - chromium           
+      - code    
+      - spotify           
+  become: True
