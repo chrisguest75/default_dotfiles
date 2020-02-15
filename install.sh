@@ -80,6 +80,13 @@ backup_and_linkfile ${SCRIPT_DIR}/.zshrc ~/.zshrc
 backup_and_linkfile ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
 backup_and_linkfile ${SCRIPT_DIR}/tmux/.tmux.conf ~/.tmux.conf
 
+echo "Installing vimrc - requires vim.plug"
+if [ -d "~/.vim" ]; then 
+    backup_and_linkfile ${SCRIPT_DIR}/vimrc/.vimrc ~/.vimrc
+else
+    echo "** Please install vim-plug https://github.com/junegunn/vim-plug **"
+fi
+
 # Copy over my theme
 echo "Copying chrisguest.zsh-theme"
 cp ${SCRIPT_DIR}/chrisguest.zsh-theme "${ZSH}/custom/themes"
@@ -93,12 +100,17 @@ fi
 
 if [[ ${INSTALL_FONT} == true ]]; then 
     if [[ ${INSTALL_OS} == "Linux" ]]; then 
-        echo "Installing NerdFonts"
-        wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip -O ./downloads/Hack.zip
-        unzip ./downloads/Hack.zip -d ./downloads/hack 
-        mkdir -p ~/.fonts
-        cp ./downloads/hack/* ~/.fonts
-        fc-cache -fv ~/.fonts   
+        echo "Installing Hack NerdFonts"
+
+        if [ -d "~/.fonts" ]; then 
+            wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip -O ./downloads/Hack.zip
+            unzip ./downloads/Hack.zip -d ./downloads/hack 
+            mkdir -p ~/.fonts
+            cp ./downloads/hack/* ~/.fonts
+            fc-cache -fv ~/.fonts   
+        else
+            echo "Hack NerdFonts already installed"
+        fi
     fi
 else
     echo "Skipping installing fonts"

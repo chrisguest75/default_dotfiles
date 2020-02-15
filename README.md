@@ -8,24 +8,24 @@ These are my dotfiles that I can copy around to different machines.
     - brew installations
     - fonts  
 1. Goto directories
-1. vim config?
 1. aws-okta aliases for admin and not
 1. Show shllvl for when in an awsokta prompt
 1. Install tfenv and pipenv and landscape.  
 1. linuxbrew.
 1. configure iterm2
+1. Configure terminal on linux
 
 ## Installation
 The install creates a set of symlinks for my profiles.  
 
-```
+```sh
 git clone 
 ./install.sh
 ```
 
 ## Homebrew Apps
 
-```
+```sh
 cd ./brew
 brew bundle install
 ```
@@ -50,6 +50,15 @@ https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
 ```
 brew tap homebrew/cask-fonts
 brew cask install font-hack-nerd-font
+```
+
+## Linux Terminal 
+You'll still have to manually change the font to hack fonts in the terminal preferences  
+
+## Vim
+```sh
+sudo apt install vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 ## Tmuxinator
