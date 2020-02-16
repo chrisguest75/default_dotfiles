@@ -81,7 +81,7 @@ backup_and_linkfile ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
 backup_and_linkfile ${SCRIPT_DIR}/tmux/.tmux.conf ~/.tmux.conf
 
 echo "Installing vimrc - requires vim.plug"
-if [[ -f "~/.vim/autoload/plug.vim" ]]; then 
+if [[ -f ~/.vim/autoload/plug.vim ]]; then 
     backup_and_linkfile ${SCRIPT_DIR}/vimrc/.vimrc ~/.vimrc
 else
     echo "** Please install vim-plug https://github.com/junegunn/vim-plug **"
