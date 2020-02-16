@@ -1,2 +1,4 @@
 roles/gantsign.oh-my-zsh
 roles/nickjj.docker
+roles/aeimer.install-virtualbox-vagrant
+roles/geerlingguy.docker

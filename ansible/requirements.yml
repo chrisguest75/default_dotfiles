@@ -1,3 +1,6 @@
 # from galaxy
+# ansible-galaxy install -r requirements.yml -p ./roles 
 - src: gantsign.oh-my-zsh
 - src: nickjj.docker
+#- src: geerlingguy.docker
+#- src: aeimer.install-virtualbox-vagrant

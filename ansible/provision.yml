@@ -9,11 +9,20 @@
   pre_tasks:
     - name: get hostname
       shell: hostname
-      register: hostname
+      register: hostname_out
 
     - debug:
-        var: hostname.stdout
+        var: hostname_out.stdout
 
+    - name: host os
+      shell: |
+        lsb_release -a 
+        uname -a 
+      register: hostos_out
+
+    - debug:
+        var: hostos_out.stdout
+  
     - name: check if .zshrc already exists
       stat:
         path: /home/{{ install_user }}/.zshrc
@@ -36,15 +45,25 @@
               - git  
       when: not zshrc_file.stat.exists
 
-    - role: "nickjj.docker"
-      tags: ["docker"]
-      vars:
-        docker__edition: "ce"
-        docker__channel: ["stable"]
-        docker__version: "19.03.6"
-        #docker__version: "18.06.1"
-      when: docker_install == "True"   
-      become: True
+    # - role: aeimer.install-virtualbox-vagrant      
+    #   vars:
+    #     virtualbox_version: 6.1
+        
+    # - role: geerlingguy.docker
+    #   vars:
+    #     docker_edition: "ce"
+    #   when: docker_install == "True"   
+    #   become: True
+
+    # - role: "nickjj.docker"
+    #   tags: ["docker"]
+    #   vars:
+    #     docker__edition: "ce"
+    #     docker__channel: ["stable"]
+    #     docker__version: "19.03.6"
+    #     #docker__version: "18.06.1"
+    #   when: docker_install == "True"   
+    #   become: True
 
     - role: "dotfiles"
       when: dotfiles_install == "True"   
