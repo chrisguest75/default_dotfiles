@@ -1,10 +1,11 @@
 # README.md
 
 ## TODO 
-1. Add a local install configuration
 1. Virtualbox
-1. Fix snaps
+1. Docker is not working 
 1. Gnome desktop features. 
+    * Configure VNC.
+1. Add a local install configuration
 1. Configure visualstudio code.
 1. Linux hardening.  
 
@@ -36,10 +37,14 @@ ansible-playbook  --user chrisguest --extra-vars "ansible_become_pass=<password>
 ## Troubleshooting
 
 1. Snaps are failing to install.
-    1. It might require purging snapd '''apt purge snapd'''
-
-
-```sh
-sudo snap install code 
-error: too early for operation, device not yet seeded or device model not acknowledged
-```
+    ```sh
+    sudo snap install code 
+    error: too early for operation, device not yet seeded or device model not acknowledged
+    ```
+    You'll need to remove the snapd package and reinstall
+    ```sh    
+    sudo apt --purge remove snapd
+    sudo apt update
+    sudo umount /var/snap
+    sudo apt install snapd
+    ```

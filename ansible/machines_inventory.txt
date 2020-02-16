@@ -1,6 +1,6 @@
 
 [all:vars]
-docker_install="True"
+docker_install="False"
 dotfiles_install="True"
 
 [chrisguest-W520]
