@@ -1,9 +1,5 @@
 ---
 
-- name: get hostname
-  shell: hostname
-  register: hostname
-
 - name: apt install basics
   apt: 
     pkg:
@@ -20,9 +16,9 @@
       - hub
       - keepassx
       - vim 
+      - vagrant
 
   become: True
-  #become_user: "{{ install_user }}"
 
 #- name: Update all packages to the latest version
 #  apt:

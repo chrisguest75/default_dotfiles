@@ -3,10 +3,30 @@
 - name: Provision machines
   hosts: "all"
   gather_facts: yes
-  
+  # vars:
+  #   ansible_become_pass: ""  
+
+  pre_tasks:
+    - name: get hostname
+      shell: hostname
+      register: hostname
+
+    - debug:
+        var: hostname.stdout
+
+    - name: check if .zshrc already exists
+      stat:
+        path: /home/{{ install_user }}/.zshrc
+      register: zshrc_file
+
+    - debug:
+        msg: ".zshrc file exists"
+      when: zshrc_file.stat.exists
+
   roles:
     - role: "basic"
 
+    # Do not run this if .zshrc already exsits as it replaces it. 
     - role: gantsign.oh-my-zsh
       users:
         - username: "{{ install_user }}"
@@ -14,6 +34,7 @@
             theme: robbyrussell
             plugins:
               - git  
+      when: not zshrc_file.stat.exists
 
     # - role: "nickjj.docker"
     #   tags: ["docker"]
@@ -26,7 +47,7 @@
     #   become: True
 
     - role: "dotfiles"
-      when: dotfiles_install == "True"  
+      when: dotfiles_install == "True"   
 
-    # - role: "snaps"
-    #   when: snaps_install == "True"  
+    - role: "snaps"
+      when: snaps_install == "True"  

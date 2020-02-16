@@ -1,9 +1,33 @@
+--- 
+
 - name: Clone dotfiles
   git:
     repo: 'https://github.com/chrisguest75/default_dotfiles.git'
     dest: /home/{{ install_user }}/Code/default_dotfiles
   become_user: "{{ install_user }}"
 
-- name: Install dotfiles
-  shell: "/home/{{ install_user }}/Code/default_dotfiles/install.sh"
+- name: Get git revision
+  shell: git rev-parse HEAD
+  args:
+    chdir: "/home/{{ install_user }}/Code/default_dotfiles"
+  register: git_revision
   become_user: "{{ install_user }}"
+
+- name: Print git revision
+  debug:
+    var: git_revision.stdout
+
+- name: Install dotfiles
+  shell: "./install.sh"
+  args:
+    chdir: "/home/{{ install_user }}/Code/default_dotfiles"  
+  become_user: "{{ install_user }}"
+  register: dotfiles_install
+
+- name: Dotfile install output
+  debug:
+    var: dotfiles_install.stdout_lines
+
+
+    # msg: '{% for line in dotfiles_install.stdout_lines %}{{ line }} 
+    # {% endfor %}'    
