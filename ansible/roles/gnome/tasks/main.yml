@@ -1,0 +1,18 @@
+---
+
+
+- name: remote-access 'authentication-methods'
+  dconf: key="org/gnome/desktop/remote-access/authentication-methods" value="['vnc']"
+  become_user: "{{ install_user }}"
+
+- name: remote-access 'prompt-enabled'
+  dconf: key="org/gnome/desktop/remote-access/prompt-enabled" value="false"
+  become_user: "{{ install_user }}"
+
+- name: remote-access 'require-encryption'
+  dconf: key="org/gnome/desktop/remote-access/require-encryption" value="false"
+  become_user: "{{ install_user }}"
+
+- name: remote-access 'require-encryption'
+  dconf: key="org/gnome/desktop/remote-access/vnc-password" value="{{ vnc_password }}"
+  become_user: "{{ install_user }}"

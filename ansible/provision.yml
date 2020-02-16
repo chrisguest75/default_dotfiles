@@ -51,3 +51,7 @@
 
     - role: "snaps"
       when: snaps_install == "True"  
+
+    - role: "gnome"
+      when: gnome_install == "True" 
+      

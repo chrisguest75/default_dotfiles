@@ -8,3 +8,6 @@ dotfiles_install="True"
 [chrisguest-W520:vars]
 install_user="chrisguest"
 snaps_install="True"
+gnome_install="False"
+# needs overriding 
+vnc_password="password"
