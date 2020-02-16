@@ -7,27 +7,30 @@
   become_user: "{{ install_user }}"
 
 - name: Get git revision
-  shell: git rev-parse HEAD
+  shell: | 
+    git rev-parse HEAD
+    git show HEAD -q 
+
   args:
     chdir: "/home/{{ install_user }}/Code/default_dotfiles"
-  register: git_revision
+  register: git_revision_out
   become_user: "{{ install_user }}"
 
 - name: Print git revision
   debug:
-    var: git_revision.stdout
+    msg: '{% for line in git_revision_out.stdout_lines %}{{ line }}/n 
+          {% endfor %}'      
 
 - name: Install dotfiles
   shell: "./install.sh"
   args:
     chdir: "/home/{{ install_user }}/Code/default_dotfiles"  
   become_user: "{{ install_user }}"
-  register: dotfiles_install
+  register: dotfiles_install_out
 
 - name: Dotfile install output
   debug:
-    var: dotfiles_install
+    msg: '{% for line in dotfiles_install_out.stdout_lines %}{{ line }}/n 
+          {% endfor %}'    
 
 
-    # msg: '{% for line in dotfiles_install.stdout_lines %}{{ line }} 
-    # {% endfor %}'    

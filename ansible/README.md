@@ -2,7 +2,6 @@
 
 ## TODO 
 1. Virtualbox
-1. Output from dotfiles
 1. Docker is not working 
 1. Gnome desktop features. 
     * Configure VNC.
