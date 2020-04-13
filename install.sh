@@ -30,7 +30,7 @@ else
         source "${SCRIPT_DIR}/machines/$(hostname).local.env"
     else    
         echo "Machine specific env profile configuration at '${SCRIPT_DIR}/machines/$(hostname).env' or '${SCRIPT_DIR}/machines/$(hostname).local.env' could not be found"
-        echo "Falling back to ${PROFILE_SCRIPT_DIR}/machines/default-machine.env"
+        echo "Falling back to ${SCRIPT_DIR}/machines/default-machine.env"
         source "${SCRIPT_DIR}/machines/default-machine.env"
     fi
 fi
@@ -79,7 +79,17 @@ function backup_and_linkfile() {
 #**************************************
 
 backup_and_linkfile ${SCRIPT_DIR}/.zshrc ~/.zshrc
-backup_and_linkfile ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
+if [[ -f "${SCRIPT_DIR}/git/$(hostname)/.gitconfig" ]]; then 
+    backup_and_linkfile ${SCRIPT_DIR}/git/$(hostname)/.gitconfig ~/.gitconfig
+else
+    if [[ -f "${SCRIPT_DIR}/git/$(hostname).local/.gitconfig" ]]; then 
+        backup_and_linkfile ${SCRIPT_DIR}/git/$(hostname).local/.gitconfig ~/.gitconfig
+    else    
+        echo "Machine specific env profile configuration at '${SCRIPT_DIR}/machines/$(hostname).env' or '${SCRIPT_DIR}/machines/$(hostname).local.env' could not be found"
+        echo "Falling back to ${SCRIPT_DIR}/git/default-machine/.gitconfig"
+        backup_and_linkfile ${SCRIPT_DIR}/git/default-machine/.gitconfig ~/.gitconfig
+    fi
+fi
 backup_and_linkfile ${SCRIPT_DIR}/tmux/.tmux.conf ~/.tmux.conf
 
 echo "Installing vimrc - requires vim.plug"
