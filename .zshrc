@@ -80,12 +80,17 @@ plugins=(git)
 
 if [[ -f "${PROFILE_SCRIPT_DIR}/machines/$(hostname).zsh_config.sh" ]]; then 
     source "${PROFILE_SCRIPT_DIR}/machines/$(hostname).zsh_config.sh"
+    MACHINE_CUSTOM_CONFIGURATION="${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh"
 else
     if [[ -f "${PROFILE_SCRIPT_DIR}/machines/$(hostname).local.zsh_config.sh" ]]; then 
         source "${PROFILE_SCRIPT_DIR}/machines/$(hostname).local.zsh_config.sh"
+        MACHINE_CUSTOM_CONFIGURATION="${PROFILE_SCRIPT_DIR}/machines/$(hostname).local.sh"
     else
-        echo "Machine specific zsh profile configuration at '${PROFILE_SCRIPT_DIR}/machines/$(hostname).zsh_config.sh' or '${PROFILE_SCRIPT_DIR}/machines/$(hostname).local.zsh_config.sh' could not be found"
+        echo "Machine specific zsh profile configuration at '${PROFILE_SCRIPT_DIR}/machines/$(hostname).zsh_config.sh' or '${PROFILE_SCRIPT_DIR}/machines/$(hostname).local.zsh_config.sh' not found"
         echo "If on MacOSX see if hostname is set by running 'scutil --get HostName'. If not set to same value as 'scutil --get LocalHostName'" 
+        echo "Falling back to ${PROFILE_SCRIPT_DIR}/machines/default-machine.local.zsh_config.sh"
+        source "${PROFILE_SCRIPT_DIR}/machines/default-machine.zsh_config.sh"
+        MACHINE_CUSTOM_CONFIGURATION="${PROFILE_SCRIPT_DIR}/machines/default-machine.sh"
     fi
 fi
 
@@ -117,15 +122,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source "${PROFILE_SCRIPT_DIR}/machines/default.sh"
-
-if [[ -f "${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh" ]]; then 
-    source "${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh"
-else
-    if [[ -f "${PROFILE_SCRIPT_DIR}/machines/$(hostname).local.sh" ]]; then 
-        source "${PROFILE_SCRIPT_DIR}/machines/$(hostname).local.sh"
-    else
-        echo "Machine specific profile configuration at '${PROFILE_SCRIPT_DIR}/machines/$(hostname).local.sh' or '${PROFILE_SCRIPT_DIR}/machines/$(hostname).sh' could not be found"
-        echo "If on MacOSX see if hostname is set by running 'scutil --get HostName'. If not set to same value as 'scutil --get LocalHostName'" 
-    fi
-fi
+source "${PROFILE_SCRIPT_DIR}/machines/all.sh"
+source "${MACHINE_CUSTOM_CONFIGURATION}"

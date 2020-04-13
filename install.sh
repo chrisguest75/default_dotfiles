@@ -30,6 +30,8 @@ else
         source "${SCRIPT_DIR}/machines/$(hostname).local.env"
     else    
         echo "Machine specific env profile configuration at '${SCRIPT_DIR}/machines/$(hostname).env' or '${SCRIPT_DIR}/machines/$(hostname).local.env' could not be found"
+        echo "Falling back to ${PROFILE_SCRIPT_DIR}/machines/default-machine.env"
+        source "${SCRIPT_DIR}/machines/default-machine.env"
     fi
 fi
 
