@@ -48,8 +48,9 @@ function backup_and_linkfile() {
         if [[ -f ${targetfile} ]]; then 
             # Is zshrc already a symlink
             if ! readlink ${targetfile}; then 
-                echo "${targetfile} moved to ${targetfile}_backup"
-                mv ${targetfile} ${targetfile}_backup
+                local datebackup="${targetfile}_backup$(date +'%H%M%S-%m_%d_%Y')"
+                echo "${targetfile} moved to ${datebackup}"
+                mv ${targetfile} "${datebackup}"
 
                 # shellcheck disable=SC2088
                 echo "Linking ${targetfile}"
