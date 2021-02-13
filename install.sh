@@ -65,8 +65,17 @@ do
         readonly UNATTENDED=true
         readonly TIMEOUT=1
     ;;
+    --status) 
+        ls -la ~/.zshrc
+        ls -la ~/.vimrc
+        ls -la ~/.tmux.conf
+        ls -la ~/.gitconfig
+        exit 0
+    ;;    
 esac 
 done
+
+
 
 # Detect the OS type
 OSNAME="$(uname -s)"
