@@ -1,0 +1,5 @@
+[core]
+	pager = cat
+[user]
+	email = chris.guest@condenastint.com
+	name = Chris Guest
