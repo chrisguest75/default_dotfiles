@@ -2,14 +2,16 @@
 These are my dotfiles that I can copy around to different machines.
 
 ## TODO
-1. Might have to fix the hostname resolution
+1. apt bundle?
+1. detect iterm shell extensions
+1. dependence on oh-my-zsh?
+
 1. Install the vscode default configuration
 1. Offer a check script to verify prereq installations.
     - brew installations
     - fonts  
 1. Goto directories
 1. aws-okta aliases for admin and not
-1. Show shllvl for when in an awsokta prompt
 1. Install tfenv and pipenv and landscape.  
 1. linuxbrew.
 1. configure iterm2

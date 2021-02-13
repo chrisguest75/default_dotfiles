@@ -1,33 +1,87 @@
 tap 'homebrew/cask-fonts'
 
+
+# missing 
+# oh-my-zsh
+
+# o365
+# ms remote desktop 
+# vault
+
+
+brew 'bash'
+
 brew 'zsh'
 brew 'zsh-completions'
 
+brew 'shellcheck'
+brew 'bats-core'
+brew 'ssh-copy-id'
+brew 'watch'
+brew 'wget'
+brew 'curl'
 brew 'htop'
+
+brew 'tmux'
+brew 'tmuxinator'    
+
+brew 'git'
+brew 'gh'
+brew 'git-extras'
+
+brew 'imagemagick'
+
 brew 'jq'
-brew 'nmap'
+brew 'yq'
+
+brew 'dive'
+brew 'container-diff'
+brew 'container-structure-test'
 
 brew 'awscli'
 brew 'aws-okta'
 
-brew 'circleci'
-brew 'curl'
-
-brew 'git'
-
-brew 'hub'
-
-brew 'shellcheck'
-
-
 brew 'tfenv'
-brew 'pyenv'
+brew 'terraform-docs'
+brew 'checkov'
+brew 'terraform_landscape'
 
+brew 'kubectx'
+brew 'skaffold'
+brew 'kubernetes-cli'
+brew 'kind'
+#brew 'kuttl-cli'
+
+brew 'pyenv'
+brew 'pipenv'
+
+brew 'nvm'
+brew 'circleci'
+brew 'nmap'
+brew 'youtube-dl'
+brew 'gomplate'
 
 # Apps
 cask '1password'
 cask 'docker'
+cask 'virtualbox'
+cask 'virtualbox-extension-pack'
 cask 'google-chrome'
 cask 'iterm2'
-
 cask 'font-hack-nerd-font'
+cask 'keepassx'
+cask 'keybase' 
+cask 'homebrew/cask/docker'
+cask 'google-chrome'
+cask 'iterm2'
+cask 'spectacle'
+cask 'vagrant'
+cask 'vlc'
+cask 'hex-fiend'
+cask 'slack'
+cask 'spotify'
+cask 'discord'
+cask 'pritunl'
+cask 'visual-studio-code'
+cask 'sketchbook'
+cask 'onedrive'
