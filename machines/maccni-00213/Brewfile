@@ -64,6 +64,8 @@ brew 'nmap'
 brew 'youtube-dl'
 brew 'gomplate'
 
+brew 'ansible'
+
 # Apps
 cask '1password'
 cask 'docker'
