@@ -22,6 +22,9 @@ brew 'wget'
 brew 'curl'
 brew 'htop'
 
+# whiptail
+brew "newt"
+
 brew 'tmux'
 brew 'tmuxinator'    
 

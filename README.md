@@ -53,6 +53,15 @@ brew cask install font-hack-nerd-font
 [option-4-homebrew-fonts](https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts)
 
 
+## Installing the vscode settings.
+This ensures that my terminal settings are reflected in the vscode terminal 
+
+1) Load ```code .``` 
+1) Open settings and select an option that opens ```settings.json```
+1) Copy the contents of the repo ```./vscode/settings.json``` file into the existing copy. 
+1) Shutdown and reopen vscode from the iterm terminal to get the ```$ITERM_PROFILE == "Powerline"``` variable. 
+
+
 ## Linux Terminal 
 You'll still have to manually change the font to hack fonts in the terminal preferences  
 
