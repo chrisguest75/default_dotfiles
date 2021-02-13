@@ -31,13 +31,16 @@ esac
 export ZSH=${OH_MY_ZSH_CONFIG}
 export ZSH_DISABLE_COMPFIX=true
 ZSH_THEME="robbyrussell"
+export BASE_MACHINE_DIR="${PROFILE_SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}"
+export DEFAULT_MACHINE_DIR="${PROFILE_SCRIPT_DIR}/machines/default"
 
-if [[ -f "${PROFILE_SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}.zsh_config.sh" ]]; then 
-    source "${PROFILE_SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}.zsh_config.sh"
-    MACHINE_CUSTOM_CONFIGURATION="${PROFILE_SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}.sh"
-else
-    source "${PROFILE_SCRIPT_DIR}/machines/default.zsh_config.sh"
-    MACHINE_CUSTOM_CONFIGURATION="${PROFILE_SCRIPT_DIR}/machines/default.sh"
+if [[ -f "${BASE_MACHINE_DIR}/${INSTALL_HOSTNAME}.zsh_config.sh" ]]; then 
+    #echo "Sourcing ${BASE_MACHINE_DIR}/${INSTALL_HOSTNAME}.zsh_config.sh"
+    source "${BASE_MACHINE_DIR}/${INSTALL_HOSTNAME}.zsh_config.sh"
+    MACHINE_CUSTOM_CONFIGURATION="${BASE_MACHINE_DIR}/${INSTALL_HOSTNAME}.sh"
+else   
+    source "${DEFAULT_MACHINE_DIR}/default.zsh_config.sh"
+    MACHINE_CUSTOM_CONFIGURATION="${DEFAULT_MACHINE_DIR}/default.sh"
 fi
 
 source $ZSH/oh-my-zsh.sh

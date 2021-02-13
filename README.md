@@ -7,10 +7,6 @@ These are my dotfiles that I can copy around to different machines.
 1. dependence on oh-my-zsh?
 
 1. Install the vscode default configuration
-1. Offer a check script to verify prereq installations.
-    - brew installations
-    - fonts  
-1. Goto directories
 1. aws-okta aliases for admin and not
 1. Install tfenv and pipenv and landscape.  
 1. linuxbrew.
@@ -21,16 +17,18 @@ These are my dotfiles that I can copy around to different machines.
 The install creates a set of symlinks for my profiles.  
 
 ```sh
-git clone 
+# run the installer
 ./install.sh
 ```
 
-## Homebrew Apps
+## Configure the iterm profiles
 
-```sh
-cd ./brew
-brew bundle install
-```
+1. Goto iterm2 preferences -> preferences.
+1. Set the directory to the iterm2 folder in this repo.
+1. Click on profiles and import the profiles from json
+1. Select powerline as the default. 
+1. Ctrl+cmd+P will open a powerline terminal
+
 
 ## How it works
 It uses the hostname to determine the name of scripts to run to configure with custom settings. 
@@ -39,20 +37,21 @@ The .zshrc is linked to the install location. This connection is made during ins
 
 Load order:
 1. .zshrc
-1. ./machines/$(hostname).zsh_config.sh
+1. ./machines/$(hostname)/$(hostname).zsh_config.sh
 1. machines/default.sh
-1. machines/$(hostname).sh
-
+1. machines/$(hostname)/$(hostname).sh
 
 ## Installing powerline fonts on mac
+This is handled by the brew bundle  
 
-https://www.nerdfonts.com/
-https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
-
-```
+```sh
 brew tap homebrew/cask-fonts
 brew cask install font-hack-nerd-font
 ```
+
+[Nerdfonts](https://www.nerdfonts.com/)  
+[option-4-homebrew-fonts](https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts)
+
 
 ## Linux Terminal 
 You'll still have to manually change the font to hack fonts in the terminal preferences  

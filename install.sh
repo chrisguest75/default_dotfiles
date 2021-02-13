@@ -77,6 +77,7 @@ case "${OSTYPE}" in
         echo "Hostname: $(hostname)"
 
         export INSTALL_HOSTNAME=$(hostname)
+        INSTALL_FONT=true
     ;;
     MAC)    
         export OH_MY_ZSH_CONFIG="/Users/$USER/.oh-my-zsh"
@@ -86,6 +87,7 @@ case "${OSTYPE}" in
         echo "Hostname (VPN): $(scutil --get HostName)"
         echo "LocalHostName: $(scutil --get LocalHostName)"
         export INSTALL_HOSTNAME=$(scutil --get LocalHostName)
+        INSTALL_FONT=false
 
         echo ""
         echo "**********************************************************"    
@@ -109,20 +111,21 @@ case "${OSTYPE}" in
     ;;
 esac
 
-INSTALL_FONT=true
+export BASE_MACHINE_DIR="${SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}"
+export DEFAULT_MACHINE_DIR="${SCRIPT_DIR}/machines/default"
 
-if [[ -f "${SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}.env" ]]; then 
-    echo "Sourcing ${SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}.env"
-    source "${SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}.env"
+if [[ -f "${BASE_MACHINE_DIR}/${INSTALL_HOSTNAME}.env" ]]; then 
+    echo "Sourcing ${BASE_MACHINE_DIR}/${INSTALL_HOSTNAME}.env"
+    source "${BASE_MACHINE_DIR}/${INSTALL_HOSTNAME}.env"
 else    
-    echo "Machine specific env profile configuration at '${SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}.env' could not be found"
-    echo "Falling back to ${SCRIPT_DIR}/machines/default.env"
+    echo "Machine specific env profile configuration at '${BASE_MACHINE_DIR}/${INSTALL_HOSTNAME}.env' could not be found"
+    echo "Falling back to ${DEFAULT_MACHINE_DIR}/default.env"
     echo ""
     echo "**********************************************************"    
     read -p "Would you like to install the defaults? Y/n " yescontinue
     if [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then    
-        echo "Sourcing ${SCRIPT_DIR}/machines/default.env"
-        source "${SCRIPT_DIR}/machines/default.env"
+        echo "Sourcing ${DEFAULT_MACHINE_DIR}/default.env"
+        source "${DEFAULT_MACHINE_DIR}/default.env"
 
         # set hostname to default
         INSTALL_HOSTNAME="default"
@@ -163,6 +166,16 @@ backup_and_linkfile ${SCRIPT_DIR}/.zshrc ~/.zshrc
 
 echo ""
 echo "**********************************************************"    
+echo "Powerlevel9k"
+echo "**********************************************************"    
+if [ -d "${ZSH}/custom/themes/powerlevel9k" ]; then 
+    pushd ${ZSH}/custom/themes/powerlevel9k && git pull && popd 
+else
+    git clone https://github.com/bhilburn/powerlevel9k.git ${ZSH}/custom/themes/powerlevel9k
+fi
+
+echo ""
+echo "**********************************************************"    
 read -p "Would you like to install the extensions for vscode? Y/n " yescontinue
 if [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
     pushd ./vscode
@@ -176,7 +189,32 @@ else
     echo "Skipping the code extensions install"
 fi
 
+echo ""
+echo "**********************************************************"    
+echo "Hack NerdFonts Linux"
+echo "**********************************************************"  
+if [[ ${INSTALL_FONT} == true ]]; then 
+    if [[ ${OSTYPE} == "LINUX" ]]; then 
+        echo "Installing Hack NerdFonts"
 
+        if [ -d "~/.fonts" ]; then 
+            wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip -O ./downloads/Hack.zip
+            unzip ./downloads/Hack.zip -d ./downloads/hack 
+            mkdir -p ~/.fonts
+            cp ./downloads/hack/* ~/.fonts
+            fc-cache -fv ~/.fonts   
+        else
+            echo "Hack NerdFonts already installed"
+        fi
+    fi
+else
+    echo "Skipping installing Hack NerdFonts"
+fi
+
+echo ""
+echo "**********************************************************"    
+echo "Installation complete"
+echo "**********************************************************"    
 
 # echo "Installing vimrc - requires vim.plug"
 # if [[ -f ~/.vim/autoload/plug.vim ]]; then 
@@ -189,31 +227,8 @@ fi
 # echo "Copying chrisguest.zsh-theme"
 # cp ${SCRIPT_DIR}/chrisguest.zsh-theme "${ZSH}/custom/themes"
 
-# echo "Installing powerlevel"
-# if [ -d "${ZSH}/custom/themes/powerlevel9k" ]; then 
-#     pushd ${ZSH}/custom/themes/powerlevel9k && git pull && popd 
-# else
-#     git clone https://github.com/bhilburn/powerlevel9k.git ${ZSH}/custom/themes/powerlevel9k
-# fi
 
-# if [[ ${INSTALL_FONT} == true ]]; then 
-#     if [[ ${INSTALL_OS} == "Linux" ]]; then 
-#         echo "Installing Hack NerdFonts"
 
-#         if [ -d "~/.fonts" ]; then 
-#             wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip -O ./downloads/Hack.zip
-#             unzip ./downloads/Hack.zip -d ./downloads/hack 
-#             mkdir -p ~/.fonts
-#             cp ./downloads/hack/* ~/.fonts
-#             fc-cache -fv ~/.fonts   
-#         else
-#             echo "Hack NerdFonts already installed"
-#         fi
-#     fi
-# else
-#     echo "Skipping installing fonts"
-# fi
-# echo "run > 'la ~/'"
 
 
 #https://code.visualstudio.com/docs/getstarted/settings
