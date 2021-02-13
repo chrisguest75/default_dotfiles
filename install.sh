@@ -55,6 +55,19 @@ function backup_and_linkfile() {
     fi
 }
 
+
+UNATTENDED=false
+TIMEOUT=100
+for i in "$@"
+do
+    case $i in
+    --unattended)     
+        readonly UNATTENDED=true
+        readonly TIMEOUT=1
+    ;;
+esac 
+done
+
 # Detect the OS type
 OSNAME="$(uname -s)"
 case "${OSNAME}" in
@@ -65,10 +78,12 @@ case "${OSNAME}" in
     *)          readonly OSTYPE="UNKNOWN:${OSNAME}"
 esac
 
-echo "OSTYPE: ${OSTYPE}"
+echo "OSTYPE:      ${OSTYPE}"
 echo "SCRIPT_NAME: ${SCRIPT_NAME}"
 echo "SCRIPT_PATH: ${SCRIPT_PATH}"
-echo "SCRIPT_DIR: ${SCRIPT_DIR}"
+echo "SCRIPT_DIR:  ${SCRIPT_DIR}"
+echo "UNATTENDED:  ${UNATTENDED}"
+echo "USER:        $(whoami)"
 
 case "${OSTYPE}" in
     LINUX)     
@@ -78,17 +93,6 @@ case "${OSTYPE}" in
 
         export INSTALL_HOSTNAME=$(hostname)
         INSTALL_FONT=true
-
-        echo ""
-        echo "**********************************************************"    
-        read -p "Would you like to install the Apt bundle (sudo password required)? Y/n " yescontinue
-        if [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
-            pushd ./apt
-            sudo ./install_apt_bundle.sh     
-            popd
-        else
-            echo "Skipping the apt install"
-        fi        
     ;;
     MAC)    
         export OH_MY_ZSH_CONFIG="/Users/$USER/.oh-my-zsh"
@@ -99,24 +103,10 @@ case "${OSTYPE}" in
         echo "LocalHostName: $(scutil --get LocalHostName)"
         export INSTALL_HOSTNAME=$(scutil --get LocalHostName)
         INSTALL_FONT=false
-
-        echo ""
-        echo "**********************************************************"    
-        read -p "Would you like to install the Brew bundle? Y/n " yescontinue
-        if [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
-            pushd ./brew
-            brew bundle install
-            popd
-        else
-            echo "Skipping the brew install"
-        fi
-
     ;;
     CYGWIN)
-    
     ;;
     MINGW)
-    
     ;;
     *)
     ;;
@@ -133,8 +123,8 @@ else
     echo "Falling back to ${DEFAULT_MACHINE_DIR}/default.env"
     echo ""
     echo "**********************************************************"    
-    read -p "Would you like to install the defaults? Y/n " yescontinue
-    if [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then    
+    read -t ${TIMEOUT} -p "Would you like to install the defaults? Y/n " yescontinue
+    if [ "$UNATTENDED" == true  ] || [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then    
         echo "Sourcing ${DEFAULT_MACHINE_DIR}/default.env"
         source "${DEFAULT_MACHINE_DIR}/default.env"
 
@@ -151,6 +141,36 @@ fi
 #**************************************
 #* Start
 #**************************************
+export BASE_MACHINE_DIR="${SCRIPT_DIR}/machines/${INSTALL_HOSTNAME}"
+
+case "${OSTYPE}" in
+    LINUX)  
+        echo ""
+        echo "**********************************************************"    
+        read -t ${TIMEOUT} -p "Would you like to install the Apt bundle (sudo password required)? Y/n " yescontinue
+        if [ "$UNATTENDED" == true  ] || [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
+            pushd ${BASE_MACHINE_DIR}
+            sudo bash -c ./install_apt_bundle.sh     
+            popd
+        else
+            echo "Skipping the apt install"
+        fi  
+    ;;
+    MAC)    
+        echo ""
+        echo "**********************************************************"    
+        read -t ${TIMEOUT} -p "Would you like to install the Brew bundle? Y/n " yescontinue
+        if [ "$UNATTENDED" == true  ] || [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
+            pushd ${BASE_MACHINE_DIR}
+            brew bundle install
+            popd
+        else
+            echo "Skipping the brew install"
+        fi
+    ;;
+    *)
+    ;;
+esac
 
 echo ""
 echo "**********************************************************"    
@@ -187,8 +207,8 @@ fi
 
 echo ""
 echo "**********************************************************"    
-read -p "Would you like to install the extensions for vscode? Y/n " yescontinue
-if [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
+read -t ${TIMEOUT} -p "Would you like to install the extensions for vscode? Y/n " yescontinue
+if [ "$UNATTENDED" == true  ] || [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
     pushd ./vscode
     ./install_extensions.sh     
     echo "****************************"    
