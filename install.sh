@@ -25,7 +25,7 @@ function backup_and_linkfile() {
     echo "Installing ${targetfile} linking to ${sourcefile}"
     echo "***************************"    
     echo "Existing backups"
-    find $(dirname "$targetfile") -type f -maxdepth 1 -name "$(basename $targetfile)*" 
+    find $(dirname "$targetfile") -maxdepth 1 -type f -name "$(basename $targetfile)*" 
     echo "***************************"    
 
     # Does file exist?
@@ -78,6 +78,17 @@ case "${OSTYPE}" in
 
         export INSTALL_HOSTNAME=$(hostname)
         INSTALL_FONT=true
+
+        echo ""
+        echo "**********************************************************"    
+        read -p "Would you like to install the Apt bundle (sudo password required)? Y/n " yescontinue
+        if [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
+            pushd ./apt
+            sudo ./install_apt_bundle.sh     
+            popd
+        else
+            echo "Skipping the apt install"
+        fi        
     ;;
     MAC)    
         export OH_MY_ZSH_CONFIG="/Users/$USER/.oh-my-zsh"
