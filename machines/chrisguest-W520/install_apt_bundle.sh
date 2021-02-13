@@ -15,6 +15,8 @@ if [ -n "${DEBUG_ENVIRONMENT-}" ];then
     export
 fi
 
+apt-get update 
+
 apt install shellcheck -y
 apt install wget -y
 apt install htop -y

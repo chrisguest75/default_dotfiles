@@ -46,3 +46,4 @@ apt install jq -y
 
 #apt install virtualbox -y
 #apt install virtualbox-ext-pack -y   
+apt-get install virtualbox-guest-additions-iso -y 
