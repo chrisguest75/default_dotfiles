@@ -52,6 +52,7 @@ brew 'terraform_landscape'
 brew 'kubectx'
 brew 'skaffold'
 brew 'kubernetes-cli'
+brew 'kubernetes-helm'
 brew 'kind'
 #brew 'kuttl-cli'
 
