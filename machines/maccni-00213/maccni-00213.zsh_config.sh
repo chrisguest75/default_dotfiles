@@ -45,6 +45,7 @@ fi
 plugins=(git 
     iterm2   
     docker
+    kubectl
     #zsh-syntax-highlighting
     #zsh-autosuggestions
     )
