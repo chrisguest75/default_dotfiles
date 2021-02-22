@@ -3,3 +3,5 @@
 [user]
 	email = chris.guest@condenastint.com
 	name = Chris Guest
+[init]
+	defaultBranch = main
