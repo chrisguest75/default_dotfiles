@@ -72,6 +72,11 @@ vim
 ```
 https://github.com/tmuxinator/tmuxinator
 ```
+
 ## Installing using Ansible.
 [./ansible/README.md](./ansible/README.md)
 
+
+# Other Software
+* [NVM](https://github.com/nvm-sh/nvm)
+* [Docker-Compose](https://docs.docker.com/compose/install/)
