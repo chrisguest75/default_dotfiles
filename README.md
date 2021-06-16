@@ -80,3 +80,34 @@ https://github.com/tmuxinator/tmuxinator
 # Other Software
 * [NVM](https://github.com/nvm-sh/nvm)
 * [Docker-Compose](https://docs.docker.com/compose/install/)
+
+
+
+
+## Preparing a MacOSX machine to run
+On a fresh MacOSX Catalina machine.
+NOTE: I'll automate these steps at some point.  
+
+1) Open terminal run `git`.  It will install xcode.
+1) `git clone git@github.com:chrisguest75/default_dotfiles.git`
+1)  ```sh
+    export MACHINE_NAME
+	sudo scutil --set ComputerName "$MACHINE_NAME"
+    sudo scutil --set LocalHostName "$MACHINE_NAME"
+    sudo scutil --set HostName "$MACHINE_NAME"
+    ```
+1) `brew install coreutils`
+1)  install zsh - brew.sh
+    install oh-my-zsh -
+1) Import the profile into iterm2 manually
+1) Run the install script
+1) Use Spotlight to run and provide permissions to: 
+    docker
+    iterm2
+    chrome
+    spectacle
+1) Install OneNote 
+1) brew install microsoft-remote-desktop
+
+
+NOTE: VirtualBox fails to install cleanly
