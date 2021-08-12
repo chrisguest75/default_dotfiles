@@ -14,6 +14,7 @@ On a fresh MacOSX Catalina/Big Sur machine.
 NOTE: I'll automate these steps at some point.  
 
 - [ ] Open terminal run `git` and install xcode.  
+- [ ] Create an sshkey Ref:[08_ssh](https://github.com/chrisguest75/sysadmin_examples/blob/master/08_ssh/README.md)
 - [ ] Create Code directory in home `mkdir -p ~\Code && cd ~\Code`  
 - [ ] `git clone git@github.com:chrisguest75/default_dotfiles.git`  
 - [ ] Correct machine names
@@ -121,5 +122,5 @@ https://github.com/tmuxinator/tmuxinator
 * [NVM](https://github.com/nvm-sh/nvm)
 * [Docker-Compose](https://docs.docker.com/compose/install/)
 
-
-
+# Resources 
+* Example `defaults` on macosx [here](https://gist.github.com/bradp/bea76b16d3325f5c47d4)
