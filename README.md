@@ -8,6 +8,46 @@ It works on Ubuntu (debian) and MacOs.
 1. aws-okta aliases for admin and not
 1. linuxbrew.
 
+# Prepare machine to run install
+## MacOSX
+On a fresh MacOSX Catalina/Big Sur machine.
+NOTE: I'll automate these steps at some point.  
+
+- [ ] Open terminal run `git` and install xcode.  
+- [ ] Create Code directory in home `mkdir -p ~\Code && cd ~\Code`  
+- [ ] `git clone git@github.com:chrisguest75/default_dotfiles.git`  
+- [ ] Correct machine names
+    ```sh
+    export MACHINE_NAME
+	sudo scutil --set ComputerName "$MACHINE_NAME"
+    sudo scutil --set LocalHostName "$MACHINE_NAME"
+    sudo scutil --set HostName "$MACHINE_NAME"
+    ```
+- [ ] Create new config in `./git` and `./machines` folder for `"$MACHINE_NAME"`
+- [ ] Install `brew` from [https://brew.sh/](https://brew.sh/)  
+- [ ] Install `zsh`  
+- [ ] Install `oh-my-zsh` from [https://ohmyz.sh/](https://ohmyz.sh/)
+- [ ] Why?
+    ```sh
+    brew install coreutils
+    ```
+- [ ] Install `default_dotfiles` 
+    ```sh
+    ./install.sh --status
+    ```
+- [ ] **Final configuration** 
+- [ ] Import the profile into iterm2 manually
+- [ ] Use Spotlight to run and provide permissions to: 
+    * docker
+    * iterm2
+    * chrome
+    * spectacle
+- [ ] Install OneNote 
+- [ ] `brew install microsoft-remote-desktop`
+
+
+NOTE: VirtualBox fails to install cleanly
+
 ## Installation
 The install creates a set of symlinks for my profiles.  
 
@@ -83,31 +123,3 @@ https://github.com/tmuxinator/tmuxinator
 
 
 
-
-## Preparing a MacOSX machine to run
-On a fresh MacOSX Catalina machine.
-NOTE: I'll automate these steps at some point.  
-
-1) Open terminal run `git`.  It will install xcode.
-1) `git clone git@github.com:chrisguest75/default_dotfiles.git`
-1)  ```sh
-    export MACHINE_NAME
-	sudo scutil --set ComputerName "$MACHINE_NAME"
-    sudo scutil --set LocalHostName "$MACHINE_NAME"
-    sudo scutil --set HostName "$MACHINE_NAME"
-    ```
-1) `brew install coreutils`
-1)  install zsh - brew.sh
-    install oh-my-zsh -
-1) Import the profile into iterm2 manually
-1) Run the install script
-1) Use Spotlight to run and provide permissions to: 
-    docker
-    iterm2
-    chrome
-    spectacle
-1) Install OneNote 
-1) brew install microsoft-remote-desktop
-
-
-NOTE: VirtualBox fails to install cleanly
