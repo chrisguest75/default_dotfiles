@@ -34,7 +34,7 @@ NOTE: I'll automate these steps at some point.
 - [ ] Install `brew` from [https://brew.sh/](https://brew.sh/)  
 - [ ] Install `zsh`  
 - [ ] Install `oh-my-zsh` from [https://ohmyz.sh/](https://ohmyz.sh/)
-- [ ] Why?
+- [ ] GNU tools on macosx
     ```sh
     brew install coreutils
     ```
