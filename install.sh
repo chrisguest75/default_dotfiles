@@ -112,6 +112,7 @@ case "${OSTYPE}" in
         echo "buildVersion: $(sw_vers -buildVersion)"
         echo "Hostname (VPN): $(scutil --get HostName)"
         echo "LocalHostName: $(scutil --get LocalHostName)"
+        echo "NetBIOSName: $(defaults read /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName)"
         export INSTALL_HOSTNAME=$(scutil --get LocalHostName)
         INSTALL_FONT=false
     ;;

@@ -17,9 +17,15 @@ NOTE: I'll automate these steps at some point.
 - [ ] Create Code directory in home `mkdir -p ~/Code && cd ~/Code`  
 - [ ] Create an sshkey, follow [08_ssh](https://github.com/chrisguest75/sysadmin_examples/blob/master/08_ssh/README.md)
 - [ ] `git clone git@github.com:chrisguest75/default_dotfiles.git` or `git clone https://github.com/chrisguest75/default_dotfiles.git`  
-- [ ] Correct machine names
+- [ ] Machine names (used to locate config)
     ```sh
-    export MACHINE_NAME
+    defaults read /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName
+	sudo scutil --get ComputerName 
+    sudo scutil --get LocalHostName
+    sudo scutil --get HostName 
+
+    # change them
+    export <MACHINE_NAME>
 	sudo scutil --set ComputerName "$MACHINE_NAME"
     sudo scutil --set LocalHostName "$MACHINE_NAME"
     sudo scutil --set HostName "$MACHINE_NAME"
