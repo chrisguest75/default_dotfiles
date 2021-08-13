@@ -40,9 +40,10 @@ NOTE: I'll automate these steps at some point.
     ```
 - [ ] Install `default_dotfiles` 
     ```sh
+    export MACHINE_NAME=<machinename>
     ./install.sh --status
     ```
-- [ ] **Final configuration** 
+### Final manual configuration
 - [ ] Import the profile into iterm2 manually
 - [ ] Use Spotlight to run and provide permissions to: 
     * docker

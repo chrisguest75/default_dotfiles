@@ -15,6 +15,10 @@ if [ -n "${DEBUG_ENVIRONMENT-}" ];then
     export
 fi
 
+if [ -n "${MACHINE_NAME-}" ];then 
+    echo "MACHINE_NAME is set $MACHINE_NAME"
+fi
+
 #**************************************
 #*
 #**************************************
@@ -101,7 +105,7 @@ case "${OSTYPE}" in
         echo "lsb_release: $(lsb_release -a)"
         echo "Hostname: $(hostname)"
 
-        export INSTALL_HOSTNAME=$(hostname)
+        export INSTALL_HOSTNAME=${MACHINE_NAME-$(hostname)}   
         INSTALL_FONT=true
     ;;
     MAC)    
@@ -113,7 +117,7 @@ case "${OSTYPE}" in
         echo "Hostname (VPN): $(scutil --get HostName)"
         echo "LocalHostName: $(scutil --get LocalHostName)"
         echo "NetBIOSName: $(defaults read /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName)"
-        export INSTALL_HOSTNAME=$(scutil --get LocalHostName)
+        export INSTALL_HOSTNAME=${MACHINE_NAME-$(scutil --get LocalHostName)}   
         INSTALL_FONT=false
     ;;
     CYGWIN)
