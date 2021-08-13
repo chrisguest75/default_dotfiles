@@ -1,0 +1,7 @@
+[core]
+	pager = cat
+[user]
+	email = chris.guest@trint.com
+	name = Chris Guest
+[init]
+	defaultBranch = main

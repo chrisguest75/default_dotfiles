@@ -14,9 +14,9 @@ On a fresh MacOSX Catalina/Big Sur machine.
 NOTE: I'll automate these steps at some point.  
 
 - [ ] Open terminal run `git` and install xcode.  
-- [ ] Create an sshkey Ref:[08_ssh](https://github.com/chrisguest75/sysadmin_examples/blob/master/08_ssh/README.md)
-- [ ] Create Code directory in home `mkdir -p ~\Code && cd ~\Code`  
-- [ ] `git clone git@github.com:chrisguest75/default_dotfiles.git`  
+- [ ] Create Code directory in home `mkdir -p ~/Code && cd ~/Code`  
+- [ ] Create an sshkey, follow [08_ssh](https://github.com/chrisguest75/sysadmin_examples/blob/master/08_ssh/README.md)
+- [ ] `git clone git@github.com:chrisguest75/default_dotfiles.git` or `git clone https://github.com/chrisguest75/default_dotfiles.git`  
 - [ ] Correct machine names
     ```sh
     export MACHINE_NAME
