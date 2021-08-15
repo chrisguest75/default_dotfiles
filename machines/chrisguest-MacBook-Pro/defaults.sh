@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-defaults write NSGlobalDomain com.apple.trackpad.scaling 2
-#defaults write NSGlobalDomain com.apple.mouse.scaling 2
+defaults write NSGlobalDomain com.apple.trackpad.scaling -int 2
+#defaults write NSGlobalDomain com.apple.mouse.scaling -int 2
 
 defaults write NSGlobalDomain com.apple.sound.beep.flash -bool false
 defaults write NSGlobalDomain com.apple.springing.delay -int 0.5

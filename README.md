@@ -7,6 +7,8 @@ It works on Ubuntu (debian) and MacOs.
 1. dependence on oh-my-zsh?
 1. aws-okta aliases for admin and not
 1. linuxbrew.
+1. install oh-my-bash
+
 
 # Prepare machine to run install
 ## MacOSX
@@ -34,6 +36,7 @@ NOTE: I'll automate these steps at some point.
 - [ ] Install `brew` from [https://brew.sh/](https://brew.sh/)  
 - [ ] Install `zsh`  
 - [ ] Install `oh-my-zsh` from [https://ohmyz.sh/](https://ohmyz.sh/)
+- [ ] Install `oh-my-bash` from [https://ohmybash.nntoan.com/](https://ohmybash.nntoan.com/)  
 - [ ] GNU tools on macosx
     ```sh
     brew install coreutils
@@ -47,15 +50,18 @@ NOTE: I'll automate these steps at some point.
 - [ ] Import the profile into iterm2 manually
 - [ ] Use Spotlight to run and provide permissions to: 
     * docker
-    * iterm2
-    * chrome
-    * spectacle
+    * iterm2 import preferences
+    * chrome 
+    * spectacle permissions
+    * vscode settings below
+    * keepassx permissions
+    * zoom screenshare permissions
+- [ ] Credentials db
+- [ ] Upload ssh key to github
+- [ ] Add `Code` directory to finder
 - [ ] Install OneNote 
-- [ ] `brew install microsoft-remote-desktop`
-
-
-NOTE: VirtualBox fails to install cleanly
-
+- [ ] Install macosx defaults 
+- [ ] Provision a VM using using vagrant [ref](https://github.com/chrisguest75/vagrant_machines)  
 ## Installation
 The install creates a set of symlinks for my profiles.  
 
@@ -131,3 +137,5 @@ https://github.com/tmuxinator/tmuxinator
 
 # Resources 
 * Example `defaults` on macosx [here](https://gist.github.com/bradp/bea76b16d3325f5c47d4)
+* Example `defaults` on macosx [here](https://gist.github.com/dannysmith/9369950)
+
