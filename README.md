@@ -62,6 +62,7 @@ NOTE: I'll automate these steps at some point.
 - [ ] Install OneNote 
 - [ ] Install macosx defaults 
 - [ ] Provision a VM using using vagrant [ref](https://github.com/chrisguest75/vagrant_machines)  
+- [ ] `gh auth login`
 ## Installation
 The install creates a set of symlinks for my profiles.  
 
