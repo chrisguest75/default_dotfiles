@@ -8,6 +8,7 @@ It works on Ubuntu (debian) and MacOs.
 1. aws-okta aliases for admin and not
 1. linuxbrew.
 1. install oh-my-bash
+1. switch mac over to using serial numbers
 
 
 # Prepare machine to run install

@@ -19,7 +19,13 @@ case "${OSTYPE}" in
     ;;
     MAC)    
         export OH_MY_ZSH_CONFIG="/Users/$USER/.oh-my-zsh"
-        export INSTALL_HOSTNAME=$(scutil --get LocalHostName)
+
+        SERIAL=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+        if [[ ${SERIAL} -eq "C02FX6FNMD6P" ]]; then
+            export INSTALL_HOSTNAME="chrisguest-MacBook-Pro"
+        else
+            export INSTALL_HOSTNAME=$(scutil --get LocalHostName)
+        fi
     ;;
     *)
         echo "${OSNAME} NOT RECOGNISED"        
