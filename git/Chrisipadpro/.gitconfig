@@ -1,0 +1,8 @@
+[core]
+	pager = cat
+[user]
+	email = chris.guest75@hotmail.com
+	name = Chris Guest
+[init]
+	defaultBranch = main
+	
