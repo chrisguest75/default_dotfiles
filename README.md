@@ -17,11 +17,12 @@ It works on Ubuntu (debian) and MacOs.
 On a fresh iSh installation.
 
 - [ ] Ensure app has been granted network rights and run `apk update` 
-- [ ] Open terminal run `apk add git`  
+- [ ] Open terminal run `apk add git curl`  
 - [ ] Create an sshkey, follow [08_ssh](https://github.com/chrisguest75/sysadmin_examples/blob/master/08_ssh/README.md)
 - [ ] `git clone git@github.com:chrisguest75/default_dotfiles.git` or `git clone https://github.com/chrisguest75/default_dotfiles.git`  
 - [ ] Create new config in `./git` and `./machines` folder for `"$MACHINE_NAME"`
-
+- [ ] Install zsh `apk add zsh`  
+- [ ] `sed -ne 's/\/ash$/\/zsh/' /etc/passwd`
 ## MacOSX
 On a fresh MacOSX Catalina/Big Sur machine.
 NOTE: I'll automate these steps at some point.  
