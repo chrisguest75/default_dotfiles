@@ -166,7 +166,11 @@ case "${OSTYPE}" in
         read -t ${TIMEOUT} -p "Would you like to install the Apt bundle (sudo password required)? Y/n " yescontinue
         if [ "$UNATTENDED" == true  ] || [ "$yescontinue" == ""  ] || [ "$yescontinue" == "Y"  ] || [ "$yescontinue" == "y"  ]  ; then
             pushd ${BASE_MACHINE_DIR}
-            sudo bash -c ./install_apt_bundle.sh     
+            if [[ $USER == "root" ]]; then
+                bash -c ./install_apt_bundle.sh     
+            else
+                sudo bash -c ./install_apt_bundle.sh     
+            fi
             popd
         else
             echo "Skipping the apt install"

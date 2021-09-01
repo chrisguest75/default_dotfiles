@@ -34,4 +34,6 @@ apk add jq
 
 apk add curl 
 apk add vim
+apk add neofetch
+
 
