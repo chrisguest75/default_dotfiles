@@ -13,8 +13,12 @@ case "${OSNAME}" in
     *)          readonly OSTYPE="UNKNOWN:${OSNAME}"
 esac
 case "${OSTYPE}" in
-    LINUX)     
-        export OH_MY_ZSH_CONFIG="/home/$USER/.oh-my-zsh"
+    LINUX)
+	if [[ $(uname -a | grep "iSH") ]]; then      
+            export OH_MY_ZSH_CONFIG="/$USER/.oh-my-zsh"
+	else
+	    export OH_MY_ZSH_CONFIG="/home/$USER/.oh-my-zsh"
+	fi
         export INSTALL_HOSTNAME=$(hostname)
     ;;
     MAC)    
