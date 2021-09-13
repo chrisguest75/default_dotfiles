@@ -28,6 +28,9 @@ if [[ $(command -v code) ]]; then
     code --install-extension bbenoist.vagrant
     code --install-extension donjayamanne.githistory
     code --install-extension ms-azuretools.vscode-docker
+    code --install-extension ritwickdey.LiveServer
+    code --install-extension esbenp.prettier-vscode
+    code --install-extension dbaeumer.vscode-eslint
 else
     echo "code is not-installed"
 fi
