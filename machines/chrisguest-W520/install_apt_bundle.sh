@@ -25,7 +25,8 @@ apt install whiptail -y
 
 apt install htop -y
 apt install git -y
-apt install gh -y
+# github is installed using linuxbrew
+#apt install gh -y
 apt install git-extras -y
 
 apt install tmux -y

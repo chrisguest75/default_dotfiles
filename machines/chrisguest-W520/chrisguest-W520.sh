@@ -9,10 +9,10 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 eval "$(pyenv init -)"
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
+[ -s "/home/linuxbrew/.linuxbrew/bin/brew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"  # This loads brew config 
