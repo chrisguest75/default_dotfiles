@@ -31,6 +31,7 @@ brew 'tmuxinator'
 brew 'git'
 brew 'gh'
 brew 'git-extras'
+brew 'gpg'
 
 brew 'imagemagick'
 
@@ -53,6 +54,7 @@ brew 'kubectx'
 brew 'skaffold'
 brew 'kubernetes-cli'
 brew 'kind'
+brew 'kubernetes-helm'
 #brew 'kuttl-cli'
 
 brew 'pyenv'
@@ -65,6 +67,7 @@ brew 'youtube-dl'
 brew 'gomplate'
 
 brew 'ansible'
+brew 'ffmpeg'
 
 # Apps
 cask '1password'
@@ -90,3 +93,5 @@ cask 'pritunl'
 cask 'visual-studio-code'
 cask 'sketchbook'
 cask 'onedrive'
+cask 'microsoft-remote-desktop'
+cask 'zoom'

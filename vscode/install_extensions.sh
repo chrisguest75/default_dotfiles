@@ -22,12 +22,15 @@ if [[ $(command -v code) ]]; then
     code --install-extension ms-vsliveshare.vsliveshare
     code --install-extension ms-vscode-remote.remote-ssh
     code --install-extension ms-vscode-remote.remote-ssh-edit
+    code --install-extension ms-vscode-remote.remote-containers
+    code --install-extension oderwat.indent-rainbow
     code --install-extension timonwong.shellcheck
     code --install-extension exiasr.hadolint
     code --install-extension eamodio.gitlens
     code --install-extension bbenoist.vagrant
     code --install-extension donjayamanne.githistory
     code --install-extension ms-azuretools.vscode-docker
+    code --install-extension esbenp.prettier-vscode
 else
     echo "code is not-installed"
 fi
