@@ -44,8 +44,12 @@ fi
 #echo ZSH_THEME=$ZSH_THEME
 plugins=(git 
     iterm2   
-    docker
-    kubectl
+    gitfast 
+    docker 
+    docker-compose 
+    emoji 
+    emoji-clock
+    kubectl  
     #zsh-syntax-highlighting
     #zsh-autosuggestions
     )

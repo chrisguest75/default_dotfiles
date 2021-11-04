@@ -49,6 +49,7 @@ plugins=(git
     docker-compose 
     emoji 
     emoji-clock
+    kubectl    
     #zsh-syntax-highlighting
     #zsh-autosuggestions
     )
