@@ -50,6 +50,11 @@ plugins=(git
     emoji 
     emoji-clock
     kubectl  
+    terraform
+    aws
+    yarn
+    macos
+    z
     #zsh-syntax-highlighting
     #zsh-autosuggestions
     )

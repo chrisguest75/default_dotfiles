@@ -17,22 +17,34 @@ fi
 
 # check code exists
 if [[ $(command -v code) ]]; then
-    code --install-extension hashicorp.terraform
-    code --install-extension ms-python.python
-    code --install-extension ms-vsliveshare.vsliveshare
-    code --install-extension ms-vscode-remote.remote-ssh
-    code --install-extension ms-vscode-remote.remote-ssh-edit
-    code --install-extension ms-vscode-remote.remote-containers
-    code --install-extension oderwat.indent-rainbow
-    code --install-extension timonwong.shellcheck
-    code --install-extension exiasr.hadolint
-    code --install-extension eamodio.gitlens
-    code --install-extension bbenoist.vagrant
-    code --install-extension donjayamanne.githistory
-    code --install-extension ms-azuretools.vscode-docker
-    code --install-extension ritwickdey.LiveServer
-    code --install-extension esbenp.prettier-vscode
-    code --install-extension dbaeumer.vscode-eslint
+
+    while IFS=, read -r extensionid
+    do
+        echo "Installing $extensionid"
+        code --install-extension $extensionid
+    done << EOF
+hashicorp.terraform
+ms-python.python
+ms-vsliveshare.vsliveshare
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
+ms-vscode-remote.remote-containers
+oderwat.indent-rainbow
+timonwong.shellcheck
+exiasr.hadolint
+eamodio.gitlens
+bbenoist.vagrant
+donjayamanne.githistory
+ms-azuretools.vscode-docker
+ritwickdey.LiveServer
+esbenp.prettier-vscode
+dbaeumer.vscode-eslint
+bierner.markdown-mermaid
+esbenp.prettier-vscode
+GitHub.codespaces
+humao.rest-client
+EOF
+ 
 else
     echo "code is not-installed"
 fi
