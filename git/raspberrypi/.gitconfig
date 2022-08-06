@@ -1,0 +1,9 @@
+[core]
+	pager = cat
+[user]
+	email = chris.guest75@hotmail.com
+	name = Chris Guest
+[init]
+	defaultBranch = main
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE	

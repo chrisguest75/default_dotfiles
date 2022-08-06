@@ -1,8 +1,11 @@
 # Default dotfiles
+
 These are my dotfiles that I can copy around to different machines.
 
 It works on Ubuntu (debian) and MacOs.  
+
 ## TODO
+
 1. detect iterm shell extensions
 1. dependence on oh-my-zsh?
 1. aws-okta aliases for admin and not
@@ -11,10 +14,10 @@ It works on Ubuntu (debian) and MacOs.
 1. install oh-my-bash
 1. switch mac over to using serial numbers
 
+## Prepare machine to run install
 
-# Prepare machine to run install
+### iSh
 
-## iSh
 On a fresh iSh installation.
 
 - [ ] Ensure app has been granted network rights and run `apk update` 
@@ -25,7 +28,8 @@ On a fresh iSh installation.
 - [ ] Install zsh and bash `apk add zsh bash`  
 - [ ] Change login shell to /bin/zsh in `vi /etc/passwd`
 
-## MacOSX
+### MacOSX
+
 On a fresh MacOSX Catalina/Big Sur machine.
 NOTE: I'll automate these steps at some point.  
 
@@ -60,7 +64,9 @@ NOTE: I'll automate these steps at some point.
     export MACHINE_NAME=<machinename>
     ./install.sh --status
     ```
+
 ### Final manual configuration
+
 - [ ] Import the profile into iterm2 manually
 - [ ] Use Spotlight to run and provide permissions to: 
     * docker
@@ -77,7 +83,9 @@ NOTE: I'll automate these steps at some point.
 - [ ] Install macosx defaults 
 - [ ] Provision a VM using using vagrant [ref](https://github.com/chrisguest75/vagrant_machines)  
 - [ ] `gh auth login`
+
 ## Installation
+
 The install creates a set of symlinks for my profiles.  
 
 ```sh
@@ -89,6 +97,7 @@ The install creates a set of symlinks for my profiles.
 ./install.sh --unattended
 
 ```
+
 ## Configure the iterm profiles
 
 1. Goto iterm2 preferences -> preferences.
@@ -98,27 +107,33 @@ The install creates a set of symlinks for my profiles.
 1. Ctrl+cmd+P will open a powerline terminal
 
 ## Installing the vscode settings.
+
 This ensures that my terminal settings are reflected in the vscode terminal 
 
 1) Load ```code .``` 
 1) Open settings and select an option that opens ```settings.json```
 1) Copy the contents of the repo ```./vscode/settings.json``` file into the existing copy. 
 1) Shutdown and reopen vscode from the iterm terminal to get the ```$ITERM_PROFILE == "Powerline"``` variable. 
+
 ## Linux (GUI)
+
 If on a Linux GUI you'll still have to manually change the font to hack fonts in the terminal preferences  
 
 ## How it works
+
 It uses the hostname to determine the name of scripts to run to configure with custom settings. 
 
 The .zshrc is linked to the install location. This connection is made during install.  
 
 Load order:
+
 1. .zshrc
 1. ./machines/$(hostname)/$(hostname).zsh_config.sh
 1. machines/default.sh
 1. machines/$(hostname)/$(hostname).sh
 
 ## Installing powerline fonts on mac
+
 This is handled by the brew bundle  
 
 ```sh
@@ -130,6 +145,7 @@ brew cask install font-hack-nerd-font
 [option-4-homebrew-fonts](https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts)
 
 ## Vim
+
 ```sh
 sudo apt install vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -138,19 +154,23 @@ vim
 ```
 
 ## Tmuxinator
+
 ```
 https://github.com/tmuxinator/tmuxinator
 ```
 
-## Installing using Ansible.
+## Installing using Ansible
+
 [./ansible/README.md](./ansible/README.md)
 
 
-# Other Software
+## Other Software
+
 * [NVM](https://github.com/nvm-sh/nvm)
 * [Docker-Compose](https://docs.docker.com/compose/install/)
 
-# Resources 
+## Resources
+
 * Example `defaults` on macosx [here](https://gist.github.com/bradp/bea76b16d3325f5c47d4)
 * Example `defaults` on macosx [here](https://gist.github.com/dannysmith/9369950)
 
