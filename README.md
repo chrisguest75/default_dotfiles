@@ -95,7 +95,6 @@ The install creates a set of symlinks for my profiles.
 # run the installer (you can also use unattended if on an VM/vagrantbox)
 ./install.sh
 ./install.sh --unattended
-
 ```
 
 ## Configure the iterm profiles
@@ -103,17 +102,17 @@ The install creates a set of symlinks for my profiles.
 1. Goto iterm2 preferences -> preferences.
 1. Set the directory to the iterm2 folder in this repo.
 1. Click on profiles and import the profiles from json
-1. Select powerline as the default. 
+1. Select powerline as the default
 1. Ctrl+cmd+P will open a powerline terminal
 
-## Installing the vscode settings.
+## Installing the vscode settings
 
 This ensures that my terminal settings are reflected in the vscode terminal 
 
-1) Load ```code .``` 
-1) Open settings and select an option that opens ```settings.json```
-1) Copy the contents of the repo ```./vscode/settings.json``` file into the existing copy. 
-1) Shutdown and reopen vscode from the iterm terminal to get the ```$ITERM_PROFILE == "Powerline"``` variable. 
+1) Load `code .`
+1) Open settings and select an option that opens `settings.json`.  Also located `~/Library/Application Support/Code/User/settings.json`
+1) Copy the contents of the repo `./vscode/settings.json` file into the existing copy.
+1) Shutdown and reopen vscode from the iterm terminal to get the `$ITERM_PROFILE == "Powerline"` variable.
 
 ## Linux (GUI)
 
@@ -121,7 +120,7 @@ If on a Linux GUI you'll still have to manually change the font to hack fonts in
 
 ## How it works
 
-It uses the hostname to determine the name of scripts to run to configure with custom settings. 
+It uses the hostname to determine the name of scripts to run to configure with custom settings.  
 
 The .zshrc is linked to the install location. This connection is made during install.  
 
@@ -174,3 +173,5 @@ https://github.com/tmuxinator/tmuxinator
 * Example `defaults` on macosx [here](https://gist.github.com/bradp/bea76b16d3325f5c47d4)
 * Example `defaults` on macosx [here](https://gist.github.com/dannysmith/9369950)
 
+* Copy enable/disable extensions settings to another workspace [here](https://stackoverflow.com/questions/58765230/copy-enable-disable-extensions-settings-to-another-workspace)  
+* Can you “force” VSCode extensions on your team’s PC’s? [here](https://www.waldo.be/2021/09/17/how-to-force-vscode-extensions-on-your-teams-pcs/)  

@@ -2,6 +2,8 @@
     "editor.renderWhitespace": "all",
     "window.zoomLevel": 0,
     "editor.accessibilitySupport": "off",
+    "editor.tabSize": 2,
+
     "terminal.external.osxExec": "terminal.app",
     "terminal.integrated.fontFamily": "hack nerd font",
     "terminal.integrated.fontWeight": "bold",
@@ -28,6 +30,6 @@
         "terminal.ansiBrightYellow": "#657b83",
         "terminalCursor.foreground": "#839496",
         "terminalCursor.background": "#003541"
-    }
-
+    },
+    "workbench.colorTheme": "Tomorrow Night Blue"
 }                 

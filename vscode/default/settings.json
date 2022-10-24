@@ -1,0 +1,89 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.accessibilitySupport": "off",
+    "terminal.external.osxExec": "terminal.app",
+    "terminal.integrated.fontFamily": "hack nerd font",
+    "terminal.integrated.fontWeight": "bold",
+
+    // From: https://gist.github.com/berndverst/b6b6972d0ca3d6a569f082f53b777442
+    "workbench.colorCustomizations": {
+        "terminal.foreground": "#839496",
+        "terminal.background": "#002833",
+        "terminal.ansiBlack": "#003541",
+        "terminal.ansiBlue": "#268bd2",
+        "terminal.ansiCyan": "#2aa198",
+        "terminal.ansiGreen": "#859901",
+        "terminal.ansiMagenta": "#d33682",
+        "terminal.ansiRed": "#dc322f",
+        "terminal.ansiWhite": "#eee8d5",
+        "terminal.ansiYellow": "#b58901",
+        "terminal.ansiBrightBlack": "#586e75",
+        "terminal.ansiBrightBlue": "#839496",
+        "terminal.ansiBrightCyan": "#93a1a1",
+        "terminal.ansiBrightGreen": "#586e75",
+        "terminal.ansiBrightMagenta": "#6c6ec6",
+        "terminal.ansiBrightRed": "#cb4b16",
+        "terminal.ansiBrightWhite": "#fdf6e3",
+        "terminal.ansiBrightYellow": "#657b83",
+        "terminalCursor.foreground": "#839496",
+        "terminalCursor.background": "#003541"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "liveServer.settings.donotShowInfoMsg": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "never",
+    "git.ignoreRebaseWarning": true,
+    "editor.suggest.showMethods": true,
+    "editor.suggest.preview": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.snippetSuggestions": "top",
+
+
+    "rest-client.environmentVariables": {
+        "local": {
+            "tenantUrl": "http://localhost:9995",
+            "api-key": "foo",
+        },
+        "dev": {
+            "tenantUrl": "https://api.trint.ninja",
+            "api-key": "bar",
+        },
+        "prod": {
+            "tenantUrl": "https://api.trint.ninja",
+            "api-key": "baz",
+        },
+        "prod-eu": {
+            "tenantUrl": "https://api.eu.trint.ninja",
+            "api-key": "foobaz",
+        }
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": false,
+        "yaml": true,
+        "plaintext": false,
+        "markdown": false,
+        "typescript": false,
+        "dockerfile": true
+    },
+    "files.associations": {
+        "*.hcl": "terraform"
+    },
+    "workbench.colorTheme": "Monokai",
+    
+
+
+}                 

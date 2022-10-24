@@ -59,3 +59,6 @@ source $ZSH/oh-my-zsh.sh
 source "${PROFILE_SCRIPT_DIR}/machines/all.sh"
 # custom final configuration for a machine
 source "${MACHINE_CUSTOM_CONFIGURATION}"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

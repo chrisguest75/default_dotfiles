@@ -1,0 +1,8 @@
+default/profile/*
+work/profile/*
+experiment/profile/*
+
+# these are no working
+!default/profile/userdata/User/settings.json
+!work/profile/userdata/User/settings.json
+!experiment/profile/userdata/User/settings.json
