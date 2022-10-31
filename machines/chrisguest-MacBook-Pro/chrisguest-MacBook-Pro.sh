@@ -12,9 +12,11 @@ export NVM_DIR="$HOME/.nvm"
 
 source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 
-alias code@experiment="code --extensions-dir \"${HOME}/Code/default_dotfiles/vscode/experiment/profile/extensions\" --user-data-dir \"${HOME}/Code/default_dotfiles/vscode/experiment/profile/userdata\""
-alias code@work="code --extensions-dir \"${HOME}/Code/default_dotfiles/vscode/work/profile/extensions\" --user-data-dir \"${HOME}/Code/default_dotfiles/vscode/work/profile/userdata\""
-alias code@default="code --extensions-dir \"${HOME}/Code/default_dotfiles/vscode/default/profile/extensions\" --user-data-dir \"${HOME}/Code/default_dotfiles/vscode/default/profile/userdata\""
+# TODO: Dynamically build these aliases.  
+alias code="echo 'use code@default, code@experiment or code@work'"
+alias code@experiment="/usr/local/bin/code --extensions-dir \"${HOME}/Code/default_dotfiles/vscode/experiment/profile/extensions\" --user-data-dir \"${HOME}/Code/default_dotfiles/vscode/experiment/profile/userdata\""
+alias code@work="/usr/local/bin/code --extensions-dir \"${HOME}/Code/default_dotfiles/vscode/work/profile/extensions\" --user-data-dir \"${HOME}/Code/default_dotfiles/vscode/work/profile/userdata\""
+alias code@default="/usr/local/bin/code --extensions-dir \"${HOME}/Code/default_dotfiles/vscode/default/profile/extensions\" --user-data-dir \"${HOME}/Code/default_dotfiles/vscode/default/profile/userdata\""
 
 eval "$(pyenv init -)"
 
