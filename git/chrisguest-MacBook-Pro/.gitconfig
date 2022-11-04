@@ -7,3 +7,5 @@
 	defaultBranch = main
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
+[alias]
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short

@@ -1,7 +1,7 @@
 [core]
 	pager = cat
 [user]
-	email = chris.guest75@hotmail.com
+	email = chrisguest75@users.noreply.github.com
 	name = Chris Guest
 [init]
 	defaultBranch = main	
